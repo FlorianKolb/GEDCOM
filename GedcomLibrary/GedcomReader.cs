@@ -124,21 +124,21 @@ namespace GedcomLibrary
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
 
               string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper());
-              XElement e = new XElement(elementName);
+              XElement element = new XElement(elementName);
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
                 ((level > previousLevel && previousLevel > GedcomEntryLevel.Zero)) ||
                 ((level == previousLevel && level > GedcomEntryLevel.One))
                 )
               {
-                previousElement.Add(e);
+                previousElement.Add(element);
               }
               else
               {
-                currentElement.Add(e);
+                currentElement.Add(element);
               }
 
-              previousElement = e;
+              previousElement = element;
               previousLevel = level;
             }
             else if (valueRegex.IsMatch(currentLine))
@@ -151,19 +151,19 @@ namespace GedcomLibrary
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
               string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper());
 
-              XElement e = new XElement(elementName, new XAttribute("Content", value.Replace("/", string.Empty).Replace("@", string.Empty)));
+              XElement element = new XElement(elementName, new XAttribute("Content", value.Replace("/", string.Empty).Replace("@", string.Empty)));
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
                 ((level > previousLevel && previousLevel > GedcomEntryLevel.Zero)) ||
                 ((level == previousLevel && level > GedcomEntryLevel.One))
                 )
               {
-                previousElement.Add(e);
+                previousElement.Add(element);
               }
               else
               {
-                previousElement = e;
-                currentElement.Add(e);
+                previousElement = element;
+                currentElement.Add(element);
               }
 
               previousLevel = level;
