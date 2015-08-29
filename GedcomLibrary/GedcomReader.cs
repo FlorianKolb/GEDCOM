@@ -13,6 +13,9 @@ using System.Xml.Xsl;
 
 namespace GedcomLibrary
 {
+  /// <summary>
+  /// Provides methods for encapsulating GEDCOM files.
+  /// </summary>
   public class GedcomReader
   {
     private enum GedcomEntryLevel
@@ -28,6 +31,11 @@ namespace GedcomLibrary
     private readonly Regex valueRegex = new Regex(@"\s(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\s(?<VALUE>.*)", RegexOptions.Compiled);
     private readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\Z", RegexOptions.Compiled);
 
+    /// <summary>
+    /// Encapsulates the given GEDCOM file. 
+    /// </summary>
+    /// <param name="filename">Path to the GEDCOM file</param>
+    /// <returns></returns>
     public GedcomFile ToGedcomFile(string filename)
     {
       XDocument doc = this.ToXml(filename);
@@ -60,14 +68,17 @@ namespace GedcomLibrary
           }
         }
       }
-
-      //outputDocument.Save("F:\\out.xml");
-
+      
       XmlSerializer serializer = new XmlSerializer(typeof(GedcomFile));
 
       return (GedcomFile)serializer.Deserialize(outputDocument.CreateReader());
     }
 
+    /// <summary>
+    /// Encapsulates a GEDCOM file to XML.
+    /// </summary>
+    /// <param name="filename">The path to the GEDCOM file</param>
+    /// <returns></returns>
     public XDocument ToXml(string filename)
     {
       XDocument doc = XDocument.Parse("<GedcomFile/>");

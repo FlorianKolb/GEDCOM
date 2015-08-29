@@ -12,5 +12,7 @@ namespace GedcomLibrary
   {
     [XmlElement("Individual")]
     public List<GedcomIndividual> Individuals { get; set; }
+    [XmlElement("Family")]
+    public List<GedcomFamily> Families { get; set; }
   }
 }

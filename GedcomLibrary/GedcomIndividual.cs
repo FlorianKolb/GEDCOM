@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
-  [XmlRoot("GedcomIndividual")]
+  [XmlRoot("Individual")]
   [DebuggerDisplay("{Name} ({Identifier})")]
   public class GedcomIndividual
   {
