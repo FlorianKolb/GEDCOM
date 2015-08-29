@@ -28,9 +28,9 @@ namespace GedcomLibrary
 
     private readonly Regex indiStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sINDI", RegexOptions.Compiled);
     private readonly Regex familyStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sFAM", RegexOptions.Compiled);
-    private readonly Regex valueRegex = new Regex(@"\s(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\s(?<VALUE>.*)", RegexOptions.Compiled);
+    private readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\s(?<VALUE>.*)", RegexOptions.Compiled);
     private readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\Z", RegexOptions.Compiled);
-
+    
     /// <summary>
     /// Encapsulates the given GEDCOM file. 
     /// </summary>
@@ -133,9 +133,13 @@ namespace GedcomLibrary
               {
                 previousElement.Add(element);
               }
-              else
+              else if (currentElement != null)
               {
                 currentElement.Add(element);
+              }
+              else
+              {
+                currentElement = element;
               }
 
               previousElement = element;

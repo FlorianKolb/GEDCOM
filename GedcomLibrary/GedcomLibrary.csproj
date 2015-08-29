@@ -40,14 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GedcomAddress.cs" />
+    <Compile Include="GedcomHead.cs" />
     <Compile Include="GedcomFile.cs" />
     <Compile Include="GedcomValue.cs" />
-    <Compile Include="GedcomSex.cs" />
     <Compile Include="GedcomName.cs" />
     <Compile Include="GedcomDate.cs" />
     <Compile Include="GedcomFamily.cs" />
     <Compile Include="GedcomIndividual.cs" />
-    <Compile Include="GedcomMappingAttribute.cs" />
     <Compile Include="GedcomRelation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

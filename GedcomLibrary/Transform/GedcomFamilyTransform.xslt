@@ -8,8 +8,10 @@
 
   <xsl:template match="Wife | Husb | Chil">
     <xsl:variable name="id" select="@Content"/>
+    <xsl:variable name="referenceIndividual" select="//Individual[@Id=$id]"/>
     <xsl:copy>
-      <xsl:copy-of select="//Individual[@Id=$id]/*"/>
+      <xsl:copy-of select="$referenceIndividual/@*"/>
+      <xsl:copy-of select="$referenceIndividual/*"/>
     </xsl:copy>
   </xsl:template>
 

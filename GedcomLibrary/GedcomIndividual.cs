@@ -9,7 +9,6 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
-  [XmlRoot("Individual")]
   [DebuggerDisplay("{Name} ({Identifier})")]
   public class GedcomIndividual
   {
@@ -18,7 +17,9 @@ namespace GedcomLibrary
     [XmlElement("Name")]
     public GedcomName Name { get; set; }
     [XmlElement("Sex")]
-    public GedcomSex Sex { get; set; }
+    public GedcomValue Sex { get; set; }
+    [XmlElement("Birt")]
+    public GedcomDate Birth { get; set; }
 
     public List<GedcomRelation> Relations { get; set; }
 

@@ -10,11 +10,8 @@ namespace GedcomLibrary
   [XmlRoot("GedcomFile")]
   public class GedcomFile
   {
-    public string Source { get; set; }
-    public string Version { get; set; }
-    public string Date { get; set; }
-    public string Time { get; set; }
-
+    [XmlElement("Head")]
+    public GedcomHead Head { get; set; }
     [XmlElement("Individual")]
     public List<GedcomIndividual> Individuals { get; set; }
     [XmlElement("Family")]

@@ -7,15 +7,9 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
-  [XmlRoot("Sex")]
-  public class GedcomSex
+  public class GedcomHead
   {
-    [XmlAttribute("Content")]
-    public string Sex { get; set; }
-
-    public override string ToString()
-    {
-      return this.Sex;
-    }
+    [XmlElement("Sour")]
+    public GedcomValue Source { get; set; }
   }
 }

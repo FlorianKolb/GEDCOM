@@ -7,7 +7,6 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
-  [XmlRoot("Family")]
   public class GedcomFamily
   {
     [XmlAttribute("Id")]
