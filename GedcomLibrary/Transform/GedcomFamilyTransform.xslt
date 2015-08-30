@@ -15,8 +15,6 @@
     </xsl:copy>
   </xsl:template>
 
-  <!--<xsl:template match="Individual"/>-->
-
   <xsl:template match="node() | @*">
     <xsl:copy>
       <xsl:copy-of select="@*"/>

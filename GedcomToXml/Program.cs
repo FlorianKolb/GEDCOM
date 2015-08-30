@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using CommandLine.Text;
 using GedcomLibrary;
 using System;
 using System.Xml.Linq;
@@ -11,11 +12,29 @@ namespace GedcomToXml
     {
       Console.Title = "GedcomToXml";
 
-      Options commandLineOptions = new Options();
-      Parser.Default.ParseArguments(args, commandLineOptions);
+      if (args.Length > 0)
+      {
+        Options commandLineOptions = new Options();
+        Parser.Default.ParseArguments(args, commandLineOptions);
 
-      XDocument document = GedcomReader.ToXml(commandLineOptions.GedcomFile);
-      document.Save(commandLineOptions.OutputFile);
+        XDocument document = GedcomReader.ToXml(commandLineOptions.GedcomFile);
+        document.Save(commandLineOptions.OutputFile);
+      }
+      else
+      {
+        Console.WriteLine("GedcomToXml");
+        Console.WriteLine("Copyright (c) Florian Kolb 2015");
+        Console.WriteLine();
+        Console.WriteLine("Usage:");
+        HelpText helpText = HelpText.AutoBuild(new Options());
+        helpText.FormatOptionHelpText += HelpText_FormatOptionHelpText;
+        helpText.AddOptions(new Options());
+      }
+    }
+
+    private static void HelpText_FormatOptionHelpText(object sender, FormatOptionHelpTextEventArgs e)
+    {
+      Console.WriteLine("-{0} {1}", e.Option.ShortName, e.Option.HelpText);
     }
   }
 

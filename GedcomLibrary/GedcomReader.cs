@@ -28,14 +28,18 @@ namespace GedcomLibrary
     private static readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)", RegexOptions.Compiled);
     private static readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z", RegexOptions.Compiled);
 
+    private static readonly string headerDefinition = "0 HEAD";
+    private static readonly string endOfFileDefinition = "0 TRLR";
+
     /// <summary>
-    /// Check if GEDCOM file has header definition and is in right format.
+    /// Check if GEDCOM file has header/EOF definition and if it's in correct format.
     /// That means every entry should match at least to one of the regex expressions.
     /// </summary>
-    /// <param name="filename"></param>
+    /// <param name="filename">The path to the GEDCOM file</param>
     private static void Validate(string filename)
     {
       bool headerIsMatched = false;
+      bool endOfFileIsMatched = false;
 
       using (FileStream fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read))
       {
@@ -47,10 +51,15 @@ namespace GedcomLibrary
           {
             string currentLine = reader.ReadLine();
 
-            if (currentLine.TrimStart().StartsWith("0 HEAD"))
+            if (currentLine.TrimStart().StartsWith(headerDefinition))
             {
               //everything is ok in this line, and we matched the header
               headerIsMatched = true;
+            }
+            if (currentLine.TrimStart().StartsWith(endOfFileDefinition))
+            {
+              //everything is ok in this line, and we matched EOF
+              endOfFileIsMatched = true;
             }
             else if (indiStartRegex.IsMatch(currentLine) || familyStartRegex.IsMatch(currentLine) ||
                valueRegex.IsMatch(currentLine) || groupRegex.IsMatch(currentLine))
@@ -67,6 +76,9 @@ namespace GedcomLibrary
 
           if (!headerIsMatched)
             throw new GedcomException("The given GEDCOM file does not contain a header definition! (0 HEAD)");
+
+          if (!endOfFileIsMatched)
+            throw new GedcomException("The given GEDCOM file does not contain a end of file definition! (0 TRLR)");
         }
       }
     }

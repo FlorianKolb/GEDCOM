@@ -15,7 +15,7 @@ namespace GedcomLibrary
     [XmlElement("Wife")]
     public GedcomIndividual Wife { get; set; }
     [XmlElement("Marr")]
-    public GedcomDate Married { get; set; }
+    public GedcomDate Marriage { get; set; }
     [XmlElement("Chil")]
     public List<GedcomIndividual> Children { get; set; }
   }
