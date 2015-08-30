@@ -27,7 +27,50 @@ namespace GedcomLibrary
     private static readonly Regex familyStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sFAM", RegexOptions.Compiled);
     private static readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)", RegexOptions.Compiled);
     private static readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z", RegexOptions.Compiled);
-    
+
+    /// <summary>
+    /// Check if GEDCOM file has header definition and is in right format.
+    /// That means every entry should match at least to one of the regex expressions.
+    /// </summary>
+    /// <param name="filename"></param>
+    private static void Validate(string filename)
+    {
+      bool headerIsMatched = false;
+
+      using (FileStream fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+      {
+        using (StreamReader reader = new StreamReader(fileStream))
+        {
+          int i = 1;
+
+          while (!reader.EndOfStream)
+          {
+            string currentLine = reader.ReadLine();
+
+            if (currentLine.TrimStart().StartsWith("0 HEAD"))
+            {
+              //everything is ok in this line, and we matched the header
+              headerIsMatched = true;
+            }
+            else if (indiStartRegex.IsMatch(currentLine) || familyStartRegex.IsMatch(currentLine) ||
+               valueRegex.IsMatch(currentLine) || groupRegex.IsMatch(currentLine))
+            {
+              //everything is ok in this line
+            }
+            else
+            {
+              throw new GedcomException(string.Format("Line {0} is invalid: '{1}'", i, currentLine));
+            }
+
+            i++;
+          }
+
+          if (!headerIsMatched)
+            throw new GedcomException("The given GEDCOM file does not contain a header definition! (0 HEAD)");
+        }
+      }
+    }
+
     /// <summary>
     /// Encapsulates the given GEDCOM file. 
     /// </summary>
@@ -40,7 +83,7 @@ namespace GedcomLibrary
       XDocument outputDocument = new XDocument();
 
       XslCompiledTransform transform = new XslCompiledTransform();
-      
+
       using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GedcomLibrary.Transform.GedcomFamilyTransform.xslt"))
       {
         using (StreamReader reader = new StreamReader(stream))
@@ -65,7 +108,7 @@ namespace GedcomLibrary
           }
         }
       }
-      
+
       XmlSerializer serializer = new XmlSerializer(typeof(GedcomFile));
 
       return (GedcomFile)serializer.Deserialize(outputDocument.CreateReader());
@@ -78,6 +121,8 @@ namespace GedcomLibrary
     /// <returns></returns>
     public static XDocument ToXml(string filename)
     {
+      Validate(filename);
+
       XDocument doc = XDocument.Parse("<GedcomFile/>");
 
       using (FileStream fileStream = new FileStream(filename, FileMode.Open, FileAccess.Read))
@@ -151,7 +196,7 @@ namespace GedcomLibrary
 
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
               string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper()).Replace("@", string.Empty);
-              
+
               XElement element = new XElement(elementName, new XAttribute("Content", value.StartsWith("@") ? value.Replace("@", string.Empty) : value));
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
