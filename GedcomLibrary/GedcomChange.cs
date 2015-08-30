@@ -8,14 +8,10 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
-  [DebuggerDisplay("{Date} ({Address})")]
-  public class GedcomDate
+  [DebuggerDisplay("{Date}")]
+  public class GedcomChange
   {
     [XmlElement("Date")]
     public GedcomValue Date { get; set; }
-    [XmlElement("Plac")]
-    public GedcomValue Place { get; set; }
-    [XmlElement("Addr")]
-    public GedcomAddress Address { get; set; }
   }
 }

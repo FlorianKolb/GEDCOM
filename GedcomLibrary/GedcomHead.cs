@@ -10,6 +10,6 @@ namespace GedcomLibrary
   public class GedcomHead
   {
     [XmlElement("Sour")]
-    public GedcomValue Source { get; set; }
+    public GedcomSource Source { get; set; }
   }
 }

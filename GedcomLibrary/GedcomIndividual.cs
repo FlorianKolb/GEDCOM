@@ -20,8 +20,13 @@ namespace GedcomLibrary
     public GedcomValue Sex { get; set; }
     [XmlElement("Birt")]
     public GedcomDate Birth { get; set; }
+    [XmlElement("_email")]
+    public GedcomValue Email { get; set; }
+    [XmlElement("Obje")]
+    public List<GedcomObject> Objects { get; set; }
 
-    public List<GedcomRelation> Relations { get; set; }
+    [XmlElement("Chan")]
+    public GedcomChange Changed { get; set; }
 
     public override string ToString()
     {

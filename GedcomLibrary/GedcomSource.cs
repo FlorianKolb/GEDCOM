@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,14 +8,13 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
-  public class GedcomValue
+  [DebuggerDisplay("{Name} {Version}")]
+  public class GedcomSource
   {
     [XmlAttribute("Content")]
-    public string Content { get; set; }
-    
-    public override string ToString()
-    {
-      return this.Content.ToString();
-    }
+    public string Name { get; set; }
+
+    [XmlElement("Vers")]
+    public GedcomValue Version { get; set; }
   }
 }

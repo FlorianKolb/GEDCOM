@@ -28,8 +28,8 @@ namespace GedcomLibrary
 
     private readonly Regex indiStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sINDI", RegexOptions.Compiled);
     private readonly Regex familyStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sFAM", RegexOptions.Compiled);
-    private readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\s(?<VALUE>.*)", RegexOptions.Compiled);
-    private readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.{3,4})\Z", RegexOptions.Compiled);
+    private readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)", RegexOptions.Compiled);
+    private readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z", RegexOptions.Compiled);
     
     /// <summary>
     /// Encapsulates the given GEDCOM file. 
@@ -153,9 +153,9 @@ namespace GedcomLibrary
               string number = match.Groups["NUMBER"].Value;
 
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
-              string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper());
-
-              XElement element = new XElement(elementName, new XAttribute("Content", value.Replace("/", string.Empty).Replace("@", string.Empty)));
+              string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper()).Replace("@", string.Empty);
+              
+              XElement element = new XElement(elementName, new XAttribute("Content", value.StartsWith("@") ? value.Replace("@", string.Empty) : value));
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
                 ((level > previousLevel && previousLevel > GedcomEntryLevel.Zero)) ||
