@@ -11,8 +11,7 @@ namespace Test
   {
     static void Main(string[] args)
     {
-      GedcomReader reader = new GedcomReader();
-      GedcomFile file = reader.ToGedcomFile(@"F:\export-BloodTree.ged");
+      GedcomFile file = GedcomReader.ToGedcomFile(@"F:\export-BloodTree.ged");
       
       foreach (GedcomIndividual indi in file.Individuals)
       {

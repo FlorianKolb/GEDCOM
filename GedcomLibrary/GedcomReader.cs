@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -16,7 +13,7 @@ namespace GedcomLibrary
   /// <summary>
   /// Provides methods for encapsulating GEDCOM files.
   /// </summary>
-  public class GedcomReader
+  public static class GedcomReader
   {
     private enum GedcomEntryLevel
     {
@@ -26,19 +23,19 @@ namespace GedcomLibrary
       Three = 3
     }
 
-    private readonly Regex indiStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sINDI", RegexOptions.Compiled);
-    private readonly Regex familyStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sFAM", RegexOptions.Compiled);
-    private readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)", RegexOptions.Compiled);
-    private readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z", RegexOptions.Compiled);
+    private static readonly Regex indiStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sINDI", RegexOptions.Compiled);
+    private static readonly Regex familyStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sFAM", RegexOptions.Compiled);
+    private static readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)", RegexOptions.Compiled);
+    private static readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z", RegexOptions.Compiled);
     
     /// <summary>
     /// Encapsulates the given GEDCOM file. 
     /// </summary>
     /// <param name="filename">Path to the GEDCOM file</param>
     /// <returns></returns>
-    public GedcomFile ToGedcomFile(string filename)
+    public static GedcomFile ToGedcomFile(string filename)
     {
-      XDocument doc = this.ToXml(filename);
+      XDocument doc = ToXml(filename);
 
       XDocument outputDocument = new XDocument();
 
@@ -79,7 +76,7 @@ namespace GedcomLibrary
     /// </summary>
     /// <param name="filename">The path to the GEDCOM file</param>
     /// <returns></returns>
-    public XDocument ToXml(string filename)
+    public static XDocument ToXml(string filename)
     {
       XDocument doc = XDocument.Parse("<GedcomFile/>");
 
