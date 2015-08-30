@@ -13,7 +13,7 @@ namespace GedcomToXml
 
       Options commandLineOptions = new Options();
       CommandLine.Parser.Default.ParseArguments(args, commandLineOptions);
-
+      
       XDocument document = GedcomReader.ToXml(commandLineOptions.GedcomFile);
       document.Save(commandLineOptions.OutputFile);
     }
