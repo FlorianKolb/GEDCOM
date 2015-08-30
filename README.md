@@ -3,9 +3,9 @@
 Target .NET-Framework Version: 4.5.2
 
 This repository contains a tool for converting GEDCOM files to XML and a library which provides 
-encapsulating GEDCOM files into .NET-classes and XML. A provisional validation of GEDCOM files in also included.
+encapsulating GEDCOM files into .NET-classes and XML. A provisional validation of GEDCOM files in also implemented.
 <br/>
-The library can handle GEDCOM v5.5 files.
+The library can handle GEDCOM 5.5 files.
 
 # Documentation
 
