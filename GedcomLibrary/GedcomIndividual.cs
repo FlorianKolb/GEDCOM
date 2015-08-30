@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
+  /// <summary>
+  /// Represents an individual in a GEDCOM file.
+  /// </summary>
   [DebuggerDisplay("{Name} ({Identifier})")]
   public class GedcomIndividual
   {
@@ -24,7 +27,6 @@ namespace GedcomLibrary
     public GedcomValue Email { get; set; }
     [XmlElement("Obje")]
     public List<GedcomObject> Objects { get; set; }
-
     [XmlElement("Chan")]
     public GedcomChange Changed { get; set; }
 

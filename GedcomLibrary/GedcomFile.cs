@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
+  /// <summary>
+  /// Represents a GEDCOM file.
+  /// </summary>
   [XmlRoot("GedcomFile")]
   public class GedcomFile
   {

@@ -20,7 +20,6 @@ namespace GedcomLibrary
     public GedcomValue MarriedName { get; set; }
     [XmlElement("Nick")]
     public GedcomValue Nick { get; set; }
-
     [XmlAttribute("Content")]
     public string Name { get; set; }
 

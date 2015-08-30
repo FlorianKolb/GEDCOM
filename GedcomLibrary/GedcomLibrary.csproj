@@ -40,10 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GedcomObject.cs" />
     <Compile Include="GedcomSource.cs" />
     <Compile Include="GedcomAddress.cs" />
     <Compile Include="GedcomChange.cs" />
-    <Compile Include="GedcomObject.cs" />
     <Compile Include="GedcomHead.cs" />
     <Compile Include="GedcomFile.cs" />
     <Compile Include="GedcomValue.cs" />

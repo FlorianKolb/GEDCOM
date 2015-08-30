@@ -13,7 +13,7 @@ namespace Test
     {
       GedcomReader reader = new GedcomReader();
       GedcomFile file = reader.ToGedcomFile(@"F:\export-BloodTree.ged");
-
+      
       foreach (GedcomIndividual indi in file.Individuals)
       {
         Console.WriteLine(indi.ToString());

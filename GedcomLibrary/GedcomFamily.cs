@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace GedcomLibrary
 {
+  /// <summary>
+  /// Represents a family in a GEDCOM file.
+  /// </summary>
   public class GedcomFamily
   {
     [XmlAttribute("Id")]
@@ -15,9 +18,9 @@ namespace GedcomLibrary
     public GedcomIndividual Husband { get; set; }
     [XmlElement("Wife")]
     public GedcomIndividual Wife { get; set; }
-    [XmlElement("Chil")]
-    public List<GedcomIndividual> Children { get; set; }
     [XmlElement("Marr")]
     public GedcomDate Married { get; set; }
+    [XmlElement("Chil")]
+    public List<GedcomIndividual> Children { get; set; }
   }
 }
