@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedcomLibrary", "GedcomLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{2C319DD8-4092-483C-9E04-1BB33FFFB053}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GedcomToXml", "GedcomToXml\GedcomToXml.csproj", "{4073086C-612A-4793-92F2-AE40F3ED24CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2C319DD8-4092-483C-9E04-1BB33FFFB053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C319DD8-4092-483C-9E04-1BB33FFFB053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C319DD8-4092-483C-9E04-1BB33FFFB053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4073086C-612A-4793-92F2-AE40F3ED24CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4073086C-612A-4793-92F2-AE40F3ED24CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4073086C-612A-4793-92F2-AE40F3ED24CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4073086C-612A-4793-92F2-AE40F3ED24CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
