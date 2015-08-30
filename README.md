@@ -1,0 +1,15 @@
+# GEDCOM
+
+This repository contains a tool for converting GEDCOM files to XML and a library which provides 
+encapsulating GEDCOM files into .NET-classes and XML.
+
+# Documentation
+
+The <code>GedcomReader</code> class provides methods for encapsulating GEDCOM files.<br/><br/>
+Parse GEDCOM file into XML:<br/>
+<code>XDocument document = GedcomReader.ToXml("file.ged");</code>
+<br/><br/>
+Encapsulate GEDCOM file into class:<br/>
+<code>GedcomFile file = GedcomReader.ToGedcomFile("file.ged");</code>
+
+
