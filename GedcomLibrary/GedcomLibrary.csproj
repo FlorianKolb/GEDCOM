@@ -53,6 +53,7 @@
     <Compile Include="GedcomFamily.cs" />
     <Compile Include="GedcomIndividual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexEx.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GedcomReader.cs" />

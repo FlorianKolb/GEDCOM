@@ -20,7 +20,7 @@ namespace GedcomLibrary
 
     public override string ToString()
     {
-      return this.Name;
+      return string.Format("{0} {1}", this.Givenname, this.Surname);
     }
   }
 }

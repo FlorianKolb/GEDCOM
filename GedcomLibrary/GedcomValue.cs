@@ -9,7 +9,7 @@ namespace GedcomLibrary
     
     public override string ToString()
     {
-      return this.Content.ToString();
+      return this.Content?.ToString();
     }
   }
 }

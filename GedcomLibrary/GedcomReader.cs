@@ -23,10 +23,10 @@ namespace GedcomLibrary
       Three = 3
     }
 
-    private static readonly Regex indiStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sINDI", RegexOptions.Compiled);
-    private static readonly Regex familyStartRegex = new Regex(@"\s*\d\s@(?<ID>.*)@\sFAM", RegexOptions.Compiled);
-    private static readonly Regex valueRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)", RegexOptions.Compiled);
-    private static readonly Regex groupRegex = new Regex(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z", RegexOptions.Compiled);
+    private static readonly RegexEx indiStartRegex = new RegexEx(@"\s*\d\s@(?<ID>.*)@\sINDI");
+    private static readonly RegexEx familyStartRegex = new RegexEx(@"\s*\d\s@(?<ID>.*)@\sFAM");
+    private static readonly RegexEx valueRegex = new RegexEx(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>.*?)\s(?<VALUE>.*)");
+    private static readonly RegexEx groupRegex = new RegexEx(@"\s*(?<NUMBER>\d)\s(?<CAPTURE>[A-Z|_]*)\Z");
 
     private static readonly string headerDefinition = "0 HEAD";
     private static readonly string endOfFileDefinition = "0 TRLR";
@@ -144,40 +144,39 @@ namespace GedcomLibrary
           XElement currentElement = null;
           XElement previousElement = null;
           GedcomEntryLevel previousLevel = GedcomEntryLevel.Zero;
+          Match match = null;
+          string currentLine, id, capture, number, value, elementName = string.Empty;
 
           while (!reader.EndOfStream)
           {
-            string currentLine = reader.ReadLine();
+            currentLine = reader.ReadLine();
 
-            if (indiStartRegex.IsMatch(currentLine))
+            if (indiStartRegex.Match(currentLine, out match))
             {
               if (currentElement != null)
                 doc.Root.Add(currentElement);
 
               previousElement = null;
-              Match match = indiStartRegex.Match(currentLine);
-              string id = match.Groups["ID"].Value;
+              id = match.Groups["ID"].Value;
               currentElement = new XElement("Individual", new XAttribute("Id", id));
             }
-            else if (familyStartRegex.IsMatch(currentLine))
+            else if (familyStartRegex.Match(currentLine, out match))
             {
               if (currentElement != null)
                 doc.Root.Add(currentElement);
 
               previousElement = null;
-              Match match = familyStartRegex.Match(currentLine);
-              string id = match.Groups["ID"].Value;
+              id = match.Groups["ID"].Value;
               currentElement = new XElement("Family", new XAttribute("Id", id));
             }
-            else if (groupRegex.IsMatch(currentLine))
+            else if (groupRegex.Match(currentLine, out match))
             {
-              Match match = groupRegex.Match(currentLine);
-              string capture = match.Groups["CAPTURE"].Value;
-              string number = match.Groups["NUMBER"].Value;
+              capture = match.Groups["CAPTURE"].Value;
+              number = match.Groups["NUMBER"].Value;
 
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
 
-              string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper());
+              elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper());
               XElement element = new XElement(elementName);
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
@@ -199,15 +198,14 @@ namespace GedcomLibrary
               previousElement = element;
               previousLevel = level;
             }
-            else if (valueRegex.IsMatch(currentLine))
+            else if (valueRegex.Match(currentLine, out match))
             {
-              Match match = valueRegex.Match(currentLine);
-              string capture = match.Groups["CAPTURE"].Value;
-              string value = match.Groups["VALUE"].Value;
-              string number = match.Groups["NUMBER"].Value;
+              capture = match.Groups["CAPTURE"].Value;
+              value = match.Groups["VALUE"].Value;
+              number = match.Groups["NUMBER"].Value;
 
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
-              string elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper()).Replace("@", string.Empty);
+              elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper()).Replace("@", string.Empty);
 
               XElement element = new XElement(elementName, new XAttribute("Content", value.StartsWith("@") ? value.Replace("@", string.Empty) : value));
 
