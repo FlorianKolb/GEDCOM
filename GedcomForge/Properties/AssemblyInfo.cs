@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GedcomLibrary")]
+[assembly: AssemblyProduct("GedcomForge")]
 [assembly: AssemblyCopyright("Copyright © Florian Kolb 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

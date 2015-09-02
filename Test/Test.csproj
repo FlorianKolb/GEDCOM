@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GedcomLibrary\GedcomLibrary.csproj">
+    <ProjectReference Include="..\GedcomForge\GedcomForge.csproj">
       <Project>{453d4a2b-0264-4251-9140-e0b3568a1141}</Project>
-      <Name>GedcomLibrary</Name>
+      <Name>GedcomForge</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

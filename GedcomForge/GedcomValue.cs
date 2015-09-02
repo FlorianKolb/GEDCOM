@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   public class GedcomValue
   {

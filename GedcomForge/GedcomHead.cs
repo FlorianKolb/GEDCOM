@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   /// <summary>
   /// Represents the head of the GEDCOM file.

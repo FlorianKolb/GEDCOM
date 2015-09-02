@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   /// <summary>
   /// Represents a GEDCOM file.

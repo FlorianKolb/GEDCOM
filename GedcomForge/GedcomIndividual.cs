@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   /// <summary>
   /// Represents an individual in a GEDCOM file.

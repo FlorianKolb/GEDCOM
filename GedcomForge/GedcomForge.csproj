@@ -7,8 +7,8 @@
     <ProjectGuid>{453D4A2B-0264-4251-9140-E0B3568A1141}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GedcomLibrary</RootNamespace>
-    <AssemblyName>GedcomLibrary</AssemblyName>
+    <RootNamespace>GedcomForge</RootNamespace>
+    <AssemblyName>GedcomForge</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

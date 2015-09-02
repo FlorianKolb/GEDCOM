@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   [DebuggerDisplay("{Name} {Version}")]
   public class GedcomSource

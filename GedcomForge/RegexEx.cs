@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   /// <summary>
   /// Extended Regex
@@ -24,7 +24,7 @@ namespace GedcomLibrary
 
     public bool Match(string input, out Match match)
     {
-      match = base.Match(input);;
+      match = base.Match(input);
       return match.Success;
     }
   }

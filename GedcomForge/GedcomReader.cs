@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.Xsl;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   /// <summary>
   /// Provides methods for encapsulating GEDCOM files.
@@ -96,7 +96,7 @@ namespace GedcomLibrary
 
       XslCompiledTransform transform = new XslCompiledTransform();
 
-      using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GedcomLibrary.Transform.GedcomFamilyTransform.xslt"))
+      using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GedcomForge.Transform.GedcomFamilyTransform.xslt"))
       {
         using (StreamReader reader = new StreamReader(stream))
         {

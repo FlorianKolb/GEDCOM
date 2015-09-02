@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace GedcomLibrary
+namespace GedcomForge
 {
   [DebuggerDisplay("{City} {State} {Country}")]
   public class GedcomAddress
