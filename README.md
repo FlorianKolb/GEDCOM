@@ -22,7 +22,7 @@ Copyright (c) Florian Kolb 2015
 
 License Agreement
 
-The software may be used freely, copied and modified. 
+The software may be used, copied and modified freely. 
 It may not be sold, licensed or otherwise distributed 
 with costs. A change in the source code of this software 
 requires a copy of precisely this License Agreement in 
