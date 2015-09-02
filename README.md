@@ -16,4 +16,17 @@ Parse GEDCOM file into XML:<br/>
 Encapsulate GEDCOM file into class:<br/>
 <code>GedcomFile file = GedcomReader.ToGedcomFile("file.ged");</code>
 
+# License
 
+Copyright (c) Florian Kolb 2015
+
+License Agreement
+
+The software may be used freely, copied and modified. 
+It may not be sold, licensed or otherwise distributed 
+with costs. A change in the source code of this software 
+requires a copy of precisely this License Agreement in 
+each modified source file and a clear indication to this 
+License Agreement in the final product, which uses modified 
+parts of this source code, or an entire modified source code 
+of this software.
