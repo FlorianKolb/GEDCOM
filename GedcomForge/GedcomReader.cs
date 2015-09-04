@@ -96,7 +96,7 @@ namespace GedcomForge
 
       XslCompiledTransform transform = new XslCompiledTransform();
 
-      using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GedcomForge.Transform.GedcomFamilyTransform.xslt"))
+      using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GedcomForge.XML.Transform.GedcomFamilyTransform.xslt"))
       {
         using (StreamReader reader = new StreamReader(stream))
         {
