@@ -1,10 +1,8 @@
-# GEDCOM Library (.NET) ![Build Status](https://travis-ci.org/FlorianKolb/GEDCOM.svg)
+# GedcomForge ![Build Status](https://travis-ci.org/FlorianKolb/GEDCOM.svg)
 
-Target .NET-Framework Version: 4.5.2
+Target .NET-Framework Version: 3.5
 
-This repository contains a tool for converting GEDCOM files to XML and a library which provides 
-encapsulating GEDCOM files into .NET-classes and XML. A provisional validation of GEDCOM files in also implemented.
-<br/>
+GedcomForge is a wrapper library for GEDCOM files. It also contains validation of GEDCOM files and serialization to XML.
 The library can handle GEDCOM 5.5 files.
 
 # Documentation
