@@ -1,4 +1,5 @@
-# GedcomForge ![Build Status](https://travis-ci.org/FlorianKolb/GEDCOM.svg)
+# GedcomForge
+###### Travis CI Status: ![Build Status](https://travis-ci.org/FlorianKolb/GEDCOM.svg)
 
 Target .NET-Framework Version: 3.5
 
