@@ -1,4 +1,4 @@
-# GEDCOM Library (.NET)
+# GEDCOM Library (.NET) ![Build Status](https://travis-ci.org/FlorianKolb/GEDCOM.svg)
 
 Target .NET-Framework Version: 4.5.2
 
