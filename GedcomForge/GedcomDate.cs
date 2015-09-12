@@ -12,5 +12,10 @@ namespace GedcomForge
     public GedcomValue Place { get; set; }
     [XmlElement("Addr")]
     public GedcomAddress Address { get; set; }
+
+    public override string ToString()
+    {
+      return this.Date?.ToString();
+    }
   }
 }

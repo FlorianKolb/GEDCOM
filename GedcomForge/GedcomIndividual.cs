@@ -18,6 +18,8 @@ namespace GedcomForge
     public GedcomValue Sex { get; set; }
     [XmlElement("Birt")]
     public GedcomDate Birth { get; set; }
+    [XmlElement("Deat")]
+    public GedcomDate Death { get; set; }
     [XmlElement("_email")]
     public GedcomValue Email { get; set; }
     [XmlElement("Obje")]

@@ -31,6 +31,15 @@ namespace GedcomForge
     private static readonly string headerDefinition = "0 HEAD";
     private static readonly string endOfFileDefinition = "0 TRLR";
 
+    public delegate void ReaderProgressDelegate(string progress);
+    public static event ReaderProgressDelegate ReaderProgress;
+
+    private static void RaiseProgress(string progress)
+    {
+      if (ReaderProgress != null)
+        ReaderProgress(progress);
+    }
+
     /// <summary>
     /// Check if GEDCOM file has header/EOF definition and if it's in correct format.
     /// That means every entry should match at least to one of the regex expressions.
@@ -38,6 +47,8 @@ namespace GedcomForge
     /// <param name="filename">The path to the GEDCOM file</param>
     private static void Validate(string filename)
     {
+      RaiseProgress("Start validating");
+
       bool headerIsMatched = false;
       bool endOfFileIsMatched = false;
 
@@ -53,11 +64,13 @@ namespace GedcomForge
 
             if (currentLine.TrimStart().StartsWith(headerDefinition))
             {
+              RaiseProgress("Found header definition");
               //everything is ok in this line, and we matched the header
               headerIsMatched = true;
             }
             if (currentLine.TrimStart().StartsWith(endOfFileDefinition))
             {
+              RaiseProgress("Found end of file definition");
               //everything is ok in this line, and we matched EOF
               endOfFileIsMatched = true;
             }

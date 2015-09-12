@@ -10,5 +10,10 @@ namespace GedcomForge
     public GedcomValue Date { get; set; }
     [XmlElement("Time")]
     public GedcomValue Time { get; set; }
+
+    public override string ToString()
+    {
+      return this.Date?.ToString();
+    }
   }
 }
