@@ -42,10 +42,6 @@
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.detailView = new System.Windows.Forms.ListView();
-      this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -54,6 +50,11 @@
       this.recentFiles = new System.Windows.Forms.ToolStripMenuItem();
       this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+      this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+      this.searchButton = new System.Windows.Forms.ToolStripButton();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -66,8 +67,10 @@
       this.statusStrip1.SuspendLayout();
       this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
       this.toolStripContainer1.ContentPanel.SuspendLayout();
+      this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
       this.toolStripContainer1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      this.toolStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // familyTreeView
@@ -79,7 +82,7 @@
       this.familyTreeView.Location = new System.Drawing.Point(0, 0);
       this.familyTreeView.Name = "familyTreeView";
       this.familyTreeView.SelectedImageIndex = 0;
-      this.familyTreeView.Size = new System.Drawing.Size(398, 482);
+      this.familyTreeView.Size = new System.Drawing.Size(398, 457);
       this.familyTreeView.TabIndex = 2;
       this.familyTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.familyTreeView_AfterSelect);
       // 
@@ -162,7 +165,7 @@
       // splitContainer1.Panel2
       // 
       this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-      this.splitContainer1.Size = new System.Drawing.Size(723, 482);
+      this.splitContainer1.Size = new System.Drawing.Size(723, 457);
       this.splitContainer1.SplitterDistance = 398;
       this.splitContainer1.TabIndex = 4;
       // 
@@ -180,41 +183,23 @@
       // splitContainer2.Panel2
       // 
       this.splitContainer2.Panel2.Controls.Add(this.pictureBox1);
-      this.splitContainer2.Size = new System.Drawing.Size(321, 482);
-      this.splitContainer2.SplitterDistance = 238;
+      this.splitContainer2.Size = new System.Drawing.Size(321, 457);
+      this.splitContainer2.SplitterDistance = 225;
       this.splitContainer2.TabIndex = 1;
       // 
       // detailView
       // 
       this.detailView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader5,
+            this.columnHeader6});
       this.detailView.Dock = System.Windows.Forms.DockStyle.Fill;
       this.detailView.FullRowSelect = true;
       this.detailView.Location = new System.Drawing.Point(0, 0);
       this.detailView.Name = "detailView";
-      this.detailView.Size = new System.Drawing.Size(321, 238);
+      this.detailView.Size = new System.Drawing.Size(321, 225);
       this.detailView.TabIndex = 0;
       this.detailView.UseCompatibleStateImageBehavior = false;
       this.detailView.View = System.Windows.Forms.View.Details;
-      // 
-      // columnHeader1
-      // 
-      this.columnHeader1.Text = "Name";
-      // 
-      // columnHeader2
-      // 
-      this.columnHeader2.Text = "Geschlecht";
-      // 
-      // columnHeader3
-      // 
-      this.columnHeader3.Text = "Geburt";
-      // 
-      // columnHeader4
-      // 
-      this.columnHeader4.Text = "Tod";
       // 
       // statusStrip1
       // 
@@ -242,7 +227,7 @@
       // toolStripContainer1.ContentPanel
       // 
       this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(723, 482);
+      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(723, 457);
       this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
       this.toolStripContainer1.Name = "toolStripContainer1";
@@ -250,12 +235,16 @@
       this.toolStripContainer1.TabIndex = 6;
       this.toolStripContainer1.Text = "toolStripContainer1";
       // 
+      // toolStripContainer1.TopToolStripPanel
+      // 
+      this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+      // 
       // pictureBox1
       // 
       this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pictureBox1.Location = new System.Drawing.Point(0, 0);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(321, 240);
+      this.pictureBox1.Size = new System.Drawing.Size(321, 228);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
@@ -292,6 +281,41 @@
       this.infoToolStripMenuItem1.Text = "Info";
       this.infoToolStripMenuItem1.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
       // 
+      // columnHeader5
+      // 
+      this.columnHeader5.Text = "";
+      // 
+      // columnHeader6
+      // 
+      this.columnHeader6.Text = "";
+      // 
+      // toolStrip1
+      // 
+      this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+      this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+      this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchTextBox,
+            this.searchButton});
+      this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+      this.toolStrip1.Name = "toolStrip1";
+      this.toolStrip1.Size = new System.Drawing.Size(202, 25);
+      this.toolStrip1.TabIndex = 0;
+      // 
+      // searchTextBox
+      // 
+      this.searchTextBox.Name = "searchTextBox";
+      this.searchTextBox.Size = new System.Drawing.Size(100, 25);
+      this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
+      // 
+      // searchButton
+      // 
+      this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
+      this.searchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.searchButton.Name = "searchButton";
+      this.searchButton.Size = new System.Drawing.Size(66, 22);
+      this.searchButton.Text = "Suchen";
+      this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+      // 
       // MainWindow
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +327,7 @@
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "MainWindow";
       this.Text = "Gedcom.NET";
+      this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.Load += new System.EventHandler(this.Form1_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
@@ -319,9 +344,13 @@
       this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
       this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
       this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+      this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+      this.toolStripContainer1.TopToolStripPanel.PerformLayout();
       this.toolStripContainer1.ResumeLayout(false);
       this.toolStripContainer1.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      this.toolStrip1.ResumeLayout(false);
+      this.toolStrip1.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -341,10 +370,6 @@
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.SplitContainer splitContainer2;
     private System.Windows.Forms.ListView detailView;
-    private System.Windows.Forms.ColumnHeader columnHeader1;
-    private System.Windows.Forms.ColumnHeader columnHeader2;
-    private System.Windows.Forms.ColumnHeader columnHeader3;
-    private System.Windows.Forms.ColumnHeader columnHeader4;
     private System.Windows.Forms.ToolStripMenuItem recentFiles;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripMenuItem gedcomToolStripMenuItem;
@@ -352,6 +377,11 @@
     private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     private System.Windows.Forms.ToolStripContainer toolStripContainer1;
     private System.Windows.Forms.ToolStripMenuItem infToolStripMenuItem;
+    private System.Windows.Forms.ColumnHeader columnHeader5;
+    private System.Windows.Forms.ColumnHeader columnHeader6;
+    private System.Windows.Forms.ToolStrip toolStrip1;
+    private System.Windows.Forms.ToolStripTextBox searchTextBox;
+    private System.Windows.Forms.ToolStripButton searchButton;
   }
 }
 

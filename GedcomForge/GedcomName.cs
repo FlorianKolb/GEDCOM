@@ -20,6 +20,9 @@ namespace GedcomForge
 
     public override string ToString()
     {
+      if (!string.IsNullOrEmpty(this.MarriedName?.Content))
+        return string.Concat(this.Givenname.Content, " ", this.MarriedName.Content);
+
       if (!string.IsNullOrEmpty(this.Name))
         return this.Name.Replace("/", string.Empty);
 

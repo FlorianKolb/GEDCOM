@@ -176,17 +176,15 @@ namespace Gedcom.NET
         GedcomIndividual individual = (GedcomIndividual)e.Node.Tag;
 
         detailView.Items.Clear();
-        ListViewItem item = new ListViewItem(
-          new string[]
-          {
-            individual.Name.ToString(),
-            individual.Sex.ToString(),
-            individual.Birth?.ToString(),
-            individual.Death?.ToString()
-          }
-          );
 
-        detailView.Items.Add(item);
+        detailView.Items.Add(new ListViewItem(new string[] { "Name", individual.Name.ToString() }));
+        detailView.Items.Add(new ListViewItem(new string[] { "Geschlecht", individual.Sex.ToString() }));
+        detailView.Items.Add(new ListViewItem(new string[] { "E-Mail", individual.Email?.ToString() }));
+        detailView.Items.Add(new ListViewItem(new string[] { "Geburt", individual.Birth != null && individual.Birth.Date != null ? DateTime.Parse(individual.Birth.Date.Content).ToShortDateString() : string.Empty }));
+
+        if (individual.Death != null && individual.Death.Date != null)
+          detailView.Items.Add(new ListViewItem(new string[] { "Tod", DateTime.Parse(individual.Death.Date.Content).ToShortDateString() }));
+
         detailView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
         if (individual.Objects.Count > 0)
@@ -207,6 +205,64 @@ namespace Gedcom.NET
       GedcomFileInformation info = new GedcomFileInformation();
       info.LoadFile(this.file);
       info.ShowDialog();
+    }
+
+    private void searchButton_Click(object sender, EventArgs e)
+    {
+      this.Search();
+    }
+
+    private void Search()
+    {
+      if (!string.IsNullOrEmpty(searchTextBox.Text) && this.file != null)
+      {
+        bool found = false;
+        GedcomIndividual individual = this.file.Individuals.Where(p => p.Name.ToString().Contains(searchTextBox.Text)).FirstOrDefault();
+        if (individual != null)
+        {
+          foreach (TreeNode node in familyTreeView.Nodes)
+          {
+            if (RecursiveSearch(node, individual))
+              found = true;
+          }
+        }
+
+        if (!found)
+        {
+          MessageBox.Show(string.Concat("Der Suchbegriff '", searchTextBox.Text, "' wurde nicht gefunden"), "Suche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        familyTreeView.Focus();
+      }
+    }
+
+    private bool RecursiveSearch(TreeNode node, GedcomIndividual individual)
+    {
+      if (node.Tag != null)
+      {
+        GedcomIndividual tag = (GedcomIndividual)node.Tag;
+
+        if (tag.Name.ToString().Equals(individual.Name.ToString()))
+        {
+          familyTreeView.SelectedNode = node;
+          node.EnsureVisible();
+          return true;
+        }
+      }
+
+      if (node.Nodes.Count > 0)
+        foreach (TreeNode child in node.Nodes)
+          return RecursiveSearch(child, individual);
+
+      return false;
+    }
+
+    private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.KeyData == Keys.Enter && e.Modifiers == Keys.None)
+      {
+        this.Search();
+      }
     }
   }
 }

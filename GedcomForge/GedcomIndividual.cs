@@ -20,6 +20,10 @@ namespace GedcomForge
     public GedcomDate Birth { get; set; }
     [XmlElement("Deat")]
     public GedcomDate Death { get; set; }
+    [XmlElement("Buri")]
+    public GedcomDate Buried { get; set; }
+    [XmlElement("Note")]
+    public GedcomNote Note { get; set; }
     [XmlElement("_email")]
     public GedcomValue Email { get; set; }
     [XmlElement("Obje")]
