@@ -41,7 +41,7 @@
       this.tableLayoutPanel2.SetColumnSpan(this.progressBar1, 2);
       this.progressBar1.Location = new System.Drawing.Point(3, 3);
       this.progressBar1.Name = "progressBar1";
-      this.progressBar1.Size = new System.Drawing.Size(255, 23);
+      this.progressBar1.Size = new System.Drawing.Size(337, 23);
       this.progressBar1.TabIndex = 0;
       // 
       // progressLabel
@@ -57,7 +57,7 @@
       // 
       this.valueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.valueLabel.AutoSize = true;
-      this.valueLabel.Location = new System.Drawing.Point(248, 30);
+      this.valueLabel.Location = new System.Drawing.Point(330, 30);
       this.valueLabel.Name = "valueLabel";
       this.valueLabel.Size = new System.Drawing.Size(10, 13);
       this.valueLabel.TabIndex = 2;
@@ -66,8 +66,8 @@
       // tableLayoutPanel2
       // 
       this.tableLayoutPanel2.ColumnCount = 2;
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.19923F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.80077F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.46647F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.53353F));
       this.tableLayoutPanel2.Controls.Add(this.progressLabel, 0, 1);
       this.tableLayoutPanel2.Controls.Add(this.valueLabel, 1, 1);
       this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 0);
@@ -77,14 +77,14 @@
       this.tableLayoutPanel2.RowCount = 2;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(261, 61);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(343, 61);
       this.tableLayoutPanel2.TabIndex = 4;
       // 
       // Progress
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(261, 61);
+      this.ClientSize = new System.Drawing.Size(343, 61);
       this.Controls.Add(this.tableLayoutPanel2);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

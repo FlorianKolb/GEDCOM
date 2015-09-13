@@ -34,15 +34,11 @@
       this.treeViewImageList = new System.Windows.Forms.ImageList(this.components);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-      this.recentFiles = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-      this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.gedcomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.detailView = new System.Windows.Forms.ListView();
@@ -50,10 +46,14 @@
       this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.recentFiles = new System.Windows.Forms.ToolStripMenuItem();
+      this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -63,11 +63,11 @@
       this.splitContainer2.Panel1.SuspendLayout();
       this.splitContainer2.Panel2.SuspendLayout();
       this.splitContainer2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.statusStrip1.SuspendLayout();
       this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
       this.toolStripContainer1.ContentPanel.SuspendLayout();
       this.toolStripContainer1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
       // familyTreeView
@@ -79,7 +79,7 @@
       this.familyTreeView.Location = new System.Drawing.Point(0, 0);
       this.familyTreeView.Name = "familyTreeView";
       this.familyTreeView.SelectedImageIndex = 0;
-      this.familyTreeView.Size = new System.Drawing.Size(398, 457);
+      this.familyTreeView.Size = new System.Drawing.Size(398, 482);
       this.familyTreeView.TabIndex = 2;
       this.familyTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.familyTreeView_AfterSelect);
       // 
@@ -116,38 +116,15 @@
       this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
       this.dateiToolStripMenuItem.Text = "Datei";
       // 
-      // öffnenToolStripMenuItem
-      // 
-      this.öffnenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("öffnenToolStripMenuItem.Image")));
-      this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-      this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-      this.öffnenToolStripMenuItem.Text = "Öffnen...";
-      this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
-      // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
       this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
       // 
-      // recentFiles
-      // 
-      this.recentFiles.Image = ((System.Drawing.Image)(resources.GetObject("recentFiles.Image")));
-      this.recentFiles.Name = "recentFiles";
-      this.recentFiles.Size = new System.Drawing.Size(207, 22);
-      this.recentFiles.Text = "Zuletzt geöffnete Dateien";
-      // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
       this.toolStripSeparator1.Size = new System.Drawing.Size(204, 6);
-      // 
-      // beendenToolStripMenuItem
-      // 
-      this.beendenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("beendenToolStripMenuItem.Image")));
-      this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-      this.beendenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-      this.beendenToolStripMenuItem.Text = "Beenden";
-      this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
       // 
       // gedcomToolStripMenuItem
       // 
@@ -160,8 +137,8 @@
       // infToolStripMenuItem
       // 
       this.infToolStripMenuItem.Name = "infToolStripMenuItem";
-      this.infToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-      this.infToolStripMenuItem.Text = "Info";
+      this.infToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.infToolStripMenuItem.Text = "Dateiinformation";
       this.infToolStripMenuItem.Click += new System.EventHandler(this.infToolStripMenuItem_Click);
       // 
       // infoToolStripMenuItem
@@ -171,14 +148,6 @@
       this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
       this.infoToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
       this.infoToolStripMenuItem.Text = "Hilfe";
-      // 
-      // infoToolStripMenuItem1
-      // 
-      this.infoToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem1.Image")));
-      this.infoToolStripMenuItem1.Name = "infoToolStripMenuItem1";
-      this.infoToolStripMenuItem1.Size = new System.Drawing.Size(95, 22);
-      this.infoToolStripMenuItem1.Text = "Info";
-      this.infoToolStripMenuItem1.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
       // 
       // splitContainer1
       // 
@@ -193,7 +162,7 @@
       // splitContainer1.Panel2
       // 
       this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-      this.splitContainer1.Size = new System.Drawing.Size(723, 457);
+      this.splitContainer1.Size = new System.Drawing.Size(723, 482);
       this.splitContainer1.SplitterDistance = 398;
       this.splitContainer1.TabIndex = 4;
       // 
@@ -211,8 +180,8 @@
       // splitContainer2.Panel2
       // 
       this.splitContainer2.Panel2.Controls.Add(this.pictureBox1);
-      this.splitContainer2.Size = new System.Drawing.Size(321, 457);
-      this.splitContainer2.SplitterDistance = 225;
+      this.splitContainer2.Size = new System.Drawing.Size(321, 482);
+      this.splitContainer2.SplitterDistance = 238;
       this.splitContainer2.TabIndex = 1;
       // 
       // detailView
@@ -226,7 +195,7 @@
       this.detailView.FullRowSelect = true;
       this.detailView.Location = new System.Drawing.Point(0, 0);
       this.detailView.Name = "detailView";
-      this.detailView.Size = new System.Drawing.Size(321, 225);
+      this.detailView.Size = new System.Drawing.Size(321, 238);
       this.detailView.TabIndex = 0;
       this.detailView.UseCompatibleStateImageBehavior = false;
       this.detailView.View = System.Windows.Forms.View.Details;
@@ -246,16 +215,6 @@
       // columnHeader4
       // 
       this.columnHeader4.Text = "Tod";
-      // 
-      // pictureBox1
-      // 
-      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(321, 228);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.pictureBox1.TabIndex = 0;
-      this.pictureBox1.TabStop = false;
       // 
       // statusStrip1
       // 
@@ -283,13 +242,55 @@
       // toolStripContainer1.ContentPanel
       // 
       this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(723, 457);
+      this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(723, 482);
       this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
       this.toolStripContainer1.Name = "toolStripContainer1";
       this.toolStripContainer1.Size = new System.Drawing.Size(723, 504);
       this.toolStripContainer1.TabIndex = 6;
       this.toolStripContainer1.Text = "toolStripContainer1";
+      // 
+      // pictureBox1
+      // 
+      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(321, 240);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox1.TabIndex = 0;
+      this.pictureBox1.TabStop = false;
+      // 
+      // öffnenToolStripMenuItem
+      // 
+      this.öffnenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("öffnenToolStripMenuItem.Image")));
+      this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
+      this.öffnenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+      this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+      this.öffnenToolStripMenuItem.Text = "Öffnen...";
+      this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
+      // 
+      // recentFiles
+      // 
+      this.recentFiles.Image = ((System.Drawing.Image)(resources.GetObject("recentFiles.Image")));
+      this.recentFiles.Name = "recentFiles";
+      this.recentFiles.Size = new System.Drawing.Size(207, 22);
+      this.recentFiles.Text = "Zuletzt geöffnete Dateien";
+      // 
+      // beendenToolStripMenuItem
+      // 
+      this.beendenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("beendenToolStripMenuItem.Image")));
+      this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
+      this.beendenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+      this.beendenToolStripMenuItem.Text = "Beenden";
+      this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+      // 
+      // infoToolStripMenuItem1
+      // 
+      this.infoToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem1.Image")));
+      this.infoToolStripMenuItem1.Name = "infoToolStripMenuItem1";
+      this.infoToolStripMenuItem1.Size = new System.Drawing.Size(95, 22);
+      this.infoToolStripMenuItem1.Text = "Info";
+      this.infoToolStripMenuItem1.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
       // 
       // MainWindow
       // 
@@ -313,7 +314,6 @@
       this.splitContainer2.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
       this.splitContainer2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.statusStrip1.ResumeLayout(false);
       this.statusStrip1.PerformLayout();
       this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
@@ -321,6 +321,7 @@
       this.toolStripContainer1.ContentPanel.ResumeLayout(false);
       this.toolStripContainer1.ResumeLayout(false);
       this.toolStripContainer1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 

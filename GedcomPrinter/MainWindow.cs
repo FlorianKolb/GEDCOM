@@ -87,12 +87,14 @@ namespace Gedcom.NET
       progress.ReportProgress(5);
       Application.DoEvents();
 
-      double increaseValue = (double)93 / file.Families.Count;
+      double increaseValue = (double)95 / file.Families.Count;
       double currentValue = 5;
 
       foreach (GedcomFamily family in file.Families)
       {
-        progress.ReportProgress(string.Concat("Load family ", family.Identifier));
+        if (family.Children.Count == 0)
+          progress.ReportProgress(string.Concat("Load family ", family.Identifier));
+
         TreeNode famNode = new TreeNode("Familie") { ImageIndex = 3, SelectedImageIndex = 3 };
         TreeNode husband = new TreeNode() { ImageIndex = 1, SelectedImageIndex = 1, Tag = family.Husband };
         husband.Text = family.Husband != null ? family.Husband.Name.ToString() : string.Empty;
@@ -106,7 +108,8 @@ namespace Gedcom.NET
 
         if (family.Children.Count > 0)
         {
-          progress.ReportProgress(string.Concat(family.Children.Count, " children"));
+          progress.ReportProgress(string.Concat("Load family ", family.Identifier, " (", family.Children.Count, " children)"));
+
           TreeNode children = new TreeNode("Kinder") { ImageIndex = 3, SelectedImageIndex = 3 };
 
           children.Nodes.AddRange(family.Children.Select(p => new TreeNode(p.Name.ToString()
@@ -125,13 +128,12 @@ namespace Gedcom.NET
         progress.ReportProgress((int)currentValue);
         Application.DoEvents();
         currentValue += increaseValue;
+
+        famNode.ExpandAll();
       }
 
-      familyTreeView.ExpandAll();
-
-      progress.ReportProgress("Expanding tree view");
       familyTreeView.Nodes[0].EnsureVisible();
-      
+
       progress.ReportProgress(100);
 
       statusLabel.Text = string.Format("GEDCOM Source: {0} ({1})", this.file.Head.Source.Name, this.file.Head.Source.Version);
@@ -145,6 +147,11 @@ namespace Gedcom.NET
     }
 
     private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      this.OpenFile();
+    }
+
+    private void OpenFile()
     {
       OpenFileDialog ofd = new OpenFileDialog();
       ofd.Filter = "Gedcom Datei (*.ged)|*.ged";
@@ -184,7 +191,7 @@ namespace Gedcom.NET
 
         if (individual.Objects.Count > 0)
         {
-          string file = individual.Objects.Where(p => p.Form.Content.StartsWith("image/")).FirstOrDefault().File.Content;
+          string file = individual.Objects.Where(p => p.Form.Content.StartsWith("image/")).FirstOrDefault()?.File.Content;
 
           pictureBox1.ImageLocation = file;
         }

@@ -40,12 +40,19 @@ namespace Gedcom.NET
       propertyListView.Items.Add(new ListViewItem(new string[] { "Source", file.Head.Source?.Name }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Version", file.Head.Source?.Version?.Content }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Original file", file.Head.OriginalFile?.Content }));
+      propertyListView.Items.Add(new ListViewItem(new string[] { "Family count", file.Families.Count.ToString() }));
+      propertyListView.Items.Add(new ListViewItem(new string[] { "Individual count", file.Individuals.Count.ToString() }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Date", file.Head.Date?.Content }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Address", file.Head.Address?.Content }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Language", file.Head.Language?.Content }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Email", file.Head.Email?.Content }));
 
       propertyListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+    }
+
+    private void okButton_Click(object sender, EventArgs e)
+    {
+      this.Close();
     }
   }
 }
