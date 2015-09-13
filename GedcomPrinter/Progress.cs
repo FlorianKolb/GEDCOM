@@ -13,6 +13,8 @@ namespace Gedcom.NET
 {
   public partial class Progress : Form
   {
+    public event EventHandler Canceled;
+
     public Progress()
     {
       InitializeComponent();
@@ -53,6 +55,12 @@ namespace Gedcom.NET
     private void Progress_Load(object sender, EventArgs e)
     {
 
+    }
+
+    private void cancelButton_Click(object sender, EventArgs e)
+    {
+      if (this.Canceled != null)
+        this.Canceled(this, new EventArgs());
     }
   }
 }

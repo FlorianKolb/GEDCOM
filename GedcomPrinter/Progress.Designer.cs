@@ -33,6 +33,7 @@
       this.progressLabel = new System.Windows.Forms.Label();
       this.valueLabel = new System.Windows.Forms.Label();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+      this.cancelButton = new System.Windows.Forms.Button();
       this.tableLayoutPanel2.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -66,25 +67,36 @@
       // tableLayoutPanel2
       // 
       this.tableLayoutPanel2.ColumnCount = 2;
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.46647F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.53353F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.5102F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.4898F));
       this.tableLayoutPanel2.Controls.Add(this.progressLabel, 0, 1);
       this.tableLayoutPanel2.Controls.Add(this.valueLabel, 1, 1);
       this.tableLayoutPanel2.Controls.Add(this.progressBar1, 0, 0);
-      this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.tableLayoutPanel2.Controls.Add(this.cancelButton, 1, 2);
       this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-      this.tableLayoutPanel2.RowCount = 2;
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(343, 61);
+      this.tableLayoutPanel2.RowCount = 3;
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.3871F));
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.6129F));
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(343, 196);
       this.tableLayoutPanel2.TabIndex = 4;
+      // 
+      // cancelButton
+      // 
+      this.cancelButton.Location = new System.Drawing.Point(261, 65);
+      this.cancelButton.Name = "cancelButton";
+      this.cancelButton.Size = new System.Drawing.Size(75, 23);
+      this.cancelButton.TabIndex = 3;
+      this.cancelButton.Text = "Abbrechen";
+      this.cancelButton.UseVisualStyleBackColor = true;
+      this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
       // 
       // Progress
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(343, 61);
+      this.ClientSize = new System.Drawing.Size(343, 94);
       this.Controls.Add(this.tableLayoutPanel2);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -108,5 +120,6 @@
     private System.Windows.Forms.Label progressLabel;
     private System.Windows.Forms.Label valueLabel;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+    private System.Windows.Forms.Button cancelButton;
   }
 }

@@ -55,6 +55,8 @@
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
       this.searchButton = new System.Windows.Forms.ToolStripButton();
+      this.pictureBoxContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.bildSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -71,6 +73,7 @@
       this.toolStripContainer1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.toolStrip1.SuspendLayout();
+      this.pictureBoxContextMenu.SuspendLayout();
       this.SuspendLayout();
       // 
       // familyTreeView
@@ -241,11 +244,12 @@
       // 
       // pictureBox1
       // 
+      this.pictureBox1.ContextMenuStrip = this.pictureBoxContextMenu;
       this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pictureBox1.Location = new System.Drawing.Point(0, 0);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(321, 228);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
       // 
@@ -298,7 +302,7 @@
             this.searchButton});
       this.toolStrip1.Location = new System.Drawing.Point(3, 0);
       this.toolStrip1.Name = "toolStrip1";
-      this.toolStrip1.Size = new System.Drawing.Size(202, 25);
+      this.toolStrip1.Size = new System.Drawing.Size(171, 25);
       this.toolStrip1.TabIndex = 0;
       // 
       // searchTextBox
@@ -315,6 +319,21 @@
       this.searchButton.Size = new System.Drawing.Size(66, 22);
       this.searchButton.Text = "Suchen";
       this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+      // 
+      // pictureBoxContextMenu
+      // 
+      this.pictureBoxContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bildSpeichernToolStripMenuItem});
+      this.pictureBoxContextMenu.Name = "pictureBoxContextMenu";
+      this.pictureBoxContextMenu.Size = new System.Drawing.Size(158, 48);
+      // 
+      // bildSpeichernToolStripMenuItem
+      // 
+      this.bildSpeichernToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bildSpeichernToolStripMenuItem.Image")));
+      this.bildSpeichernToolStripMenuItem.Name = "bildSpeichernToolStripMenuItem";
+      this.bildSpeichernToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+      this.bildSpeichernToolStripMenuItem.Text = "Bild speichern...";
+      this.bildSpeichernToolStripMenuItem.Click += new System.EventHandler(this.bildSpeichernToolStripMenuItem_Click);
       // 
       // MainWindow
       // 
@@ -351,6 +370,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
+      this.pictureBoxContextMenu.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -382,6 +402,8 @@
     private System.Windows.Forms.ToolStrip toolStrip1;
     private System.Windows.Forms.ToolStripTextBox searchTextBox;
     private System.Windows.Forms.ToolStripButton searchButton;
+    private System.Windows.Forms.ContextMenuStrip pictureBoxContextMenu;
+    private System.Windows.Forms.ToolStripMenuItem bildSpeichernToolStripMenuItem;
   }
 }
 

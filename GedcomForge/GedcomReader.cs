@@ -34,10 +34,17 @@ namespace GedcomForge
     public delegate void ReaderProgressDelegate(string progress);
     public static event ReaderProgressDelegate ReaderProgress;
 
+    private static bool cancel = false;
+
     private static void RaiseProgress(string progress)
     {
       if (ReaderProgress != null)
         ReaderProgress(progress);
+    }
+
+    public static void Cancel()
+    {
+      cancel = true;
     }
 
     /// <summary>
@@ -105,6 +112,7 @@ namespace GedcomForge
     /// <returns></returns>
     public static GedcomFile ToGedcomFile(string filename)
     {
+      cancel = false;
       XDocument doc = ToXml(filename);
 
       XDocument outputDocument = new XDocument();
@@ -168,6 +176,9 @@ namespace GedcomForge
 
           while (!reader.EndOfStream)
           {
+            if (cancel)
+              break;
+
             currentLine = reader.ReadLine();
 
             if (indiStartRegex.Match(currentLine, out match))

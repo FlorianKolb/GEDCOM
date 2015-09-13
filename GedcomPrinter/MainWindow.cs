@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace Gedcom.NET
@@ -12,6 +15,7 @@ namespace Gedcom.NET
   public partial class MainWindow : Form
   {
     GedcomFile file;
+    private bool progressCanceled = false;
 
     public MainWindow()
     {
@@ -76,7 +80,10 @@ namespace Gedcom.NET
 
     private void LoadFile(string filename)
     {
+      this.Enabled = false;
+
       Progress progress = new Progress();
+      progress.Canceled += Progress_Canceled;
       progress.Show();
 
       familyTreeView.Nodes.Clear();
@@ -92,6 +99,9 @@ namespace Gedcom.NET
 
       foreach (GedcomFamily family in file.Families)
       {
+        if (this.progressCanceled)
+          break;
+
         if (family.Children.Count == 0)
           progress.ReportProgress(string.Concat("Load family ", family.Identifier));
 
@@ -103,8 +113,9 @@ namespace Gedcom.NET
 
         famNode.Nodes.AddRange(new TreeNode[] { husband, wife });
 
-        if (family.Marriage != null)
-          famNode.Nodes.Add(Guid.NewGuid().ToString(), "Heirat: " + family.Marriage, 2, 2);
+        DateTime marriage = new DateTime();
+        if (family.Marriage != null && family.Marriage.Date?.Content != null && DateTime.TryParse(family.Marriage.Date.Content, out marriage))
+          famNode.Nodes.Add(Guid.NewGuid().ToString(), "Heirat: " + marriage.ToShortDateString(), 2, 2);
 
         if (family.Children.Count > 0)
         {
@@ -132,13 +143,26 @@ namespace Gedcom.NET
         famNode.ExpandAll();
       }
 
-      familyTreeView.Nodes[0].EnsureVisible();
-
-      progress.ReportProgress(100);
-
-      statusLabel.Text = string.Format("GEDCOM Source: {0} ({1})", this.file.Head.Source.Name, this.file.Head.Source.Version);
+      if (!this.progressCanceled)
+      {
+        familyTreeView.Nodes[0].EnsureVisible();
+        progress.ReportProgress(100);
+        statusLabel.Text = string.Format("GEDCOM Source: {0} ({1})", this.file.Head.Source.Name, this.file.Head.Source.Version);
+      }
 
       progress.Close();
+
+      this.Enabled = true;
+      this.progressCanceled = false;
+
+      if (!this.Focused)
+        this.Focus();
+    }
+
+    private void Progress_Canceled(object sender, EventArgs e)
+    {
+      this.progressCanceled = true;
+      GedcomReader.Cancel();
     }
 
     private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,7 +202,7 @@ namespace Gedcom.NET
         detailView.Items.Clear();
 
         detailView.Items.Add(new ListViewItem(new string[] { "Name", individual.Name.ToString() }));
-        detailView.Items.Add(new ListViewItem(new string[] { "Geschlecht", individual.Sex.ToString() }));
+        detailView.Items.Add(new ListViewItem(new string[] { "Geschlecht", individual.Sex.ToString().ToLower() == "f" ? "W" : "M" }));
         detailView.Items.Add(new ListViewItem(new string[] { "E-Mail", individual.Email?.ToString() }));
         detailView.Items.Add(new ListViewItem(new string[] { "Geburt", individual.Birth != null && individual.Birth.Date != null ? DateTime.Parse(individual.Birth.Date.Content).ToShortDateString() : string.Empty }));
 
@@ -189,9 +213,13 @@ namespace Gedcom.NET
 
         if (individual.Objects.Count > 0)
         {
-          string file = individual.Objects.Where(p => p.Form.Content.StartsWith("image/")).FirstOrDefault()?.File.Content;
+          GedcomObject gedcomObject = individual.Objects.Where(p => p.Form.Content.StartsWith("image/")).FirstOrDefault();
 
-          pictureBox1.ImageLocation = file;
+          if (!string.IsNullOrEmpty(gedcomObject.File?.Content))
+          {
+            pictureBox1.ImageLocation = gedcomObject.File?.Content;
+            pictureBox1.Tag = new Tuple<string, string>(gedcomObject.Form.Content, gedcomObject.File?.Content);
+          }
         }
         else
         {
@@ -262,6 +290,37 @@ namespace Gedcom.NET
       if (e.KeyData == Keys.Enter && e.Modifiers == Keys.None)
       {
         this.Search();
+      }
+    }
+
+    private void bildSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Tuple<string, string> data = (Tuple<string, string>)pictureBox1.Tag;
+
+      string filetype = string.Empty;
+      switch (data.Item1)
+      {
+        case "image/jpeg":
+        case "image/jpg":
+          filetype = "jpg";
+          break;
+      }
+
+      if (data.Item2.StartsWith("http"))
+      {
+        WebClient client = new WebClient();
+        string tmpFile = string.Concat(Path.GetTempFileName(), filetype);
+        client.DownloadFile(data.Item2, tmpFile);
+
+        SaveFileDialog sfd = new SaveFileDialog();
+        sfd.Filter = string.Format("*.{0}|*.{0}", filetype);
+        
+        if (sfd.ShowDialog() == DialogResult.OK)
+        {
+          File.Copy(tmpFile, sfd.FileName, true);
+        }
+
+        File.Delete(tmpFile);
       }
     }
   }
