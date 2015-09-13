@@ -94,6 +94,8 @@ namespace GedcomForge
             throw new GedcomException("The given GEDCOM file does not contain a end of file definition! (0 TRLR)");
         }
       }
+
+      RaiseProgress("Gedcom file is valid");
     }
 
     /// <summary>
@@ -133,6 +135,8 @@ namespace GedcomForge
           }
         }
       }
+      
+      RaiseProgress("Deserialize XML");
 
       XmlSerializer serializer = new XmlSerializer(typeof(GedcomFile));
 
@@ -147,6 +151,8 @@ namespace GedcomForge
     public static XDocument ToXml(string filename)
     {
       Validate(filename);
+
+      RaiseProgress("Transform to XML");
 
       XDocument doc = XDocument.Parse("<GedcomFile/>");
 
@@ -171,6 +177,9 @@ namespace GedcomForge
 
               previousElement = null;
               id = match.Groups["ID"].Value;
+
+              RaiseProgress(string.Concat("Parse individual ", id));
+
               currentElement = new XElement("Individual", new XAttribute("Id", id));
             }
             else if (familyStartRegex.Match(currentLine, out match))
@@ -180,13 +189,16 @@ namespace GedcomForge
 
               previousElement = null;
               id = match.Groups["ID"].Value;
+              
+              RaiseProgress(string.Concat("Parse family ", id));
+
               currentElement = new XElement("Family", new XAttribute("Id", id));
             }
             else if (groupRegex.Match(currentLine, out match))
             {
               capture = match.Groups["CAPTURE"].Value;
               number = match.Groups["NUMBER"].Value;
-
+              
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
 
               elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper());
@@ -220,7 +232,7 @@ namespace GedcomForge
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
               elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper()).Replace("@", string.Empty);
 
-              XElement element = new XElement(elementName, new XAttribute("Content", value.StartsWith("@") ? value.Replace("@", string.Empty) : value));
+              XElement element = new XElement(elementName, new XAttribute("Content", value.StartsWith("@") ? value.Replace("@", string.Empty) : value.Replace("$$", string.Empty)));
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
                 ((level > previousLevel && previousLevel > GedcomEntryLevel.Zero)) ||
@@ -240,6 +252,8 @@ namespace GedcomForge
           }
         }
       }
+
+      RaiseProgress("Transformed to XML");
 
       return doc;
     }

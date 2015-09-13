@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="GedcomException.cs" />
     <Compile Include="GedcomObject.cs" />
+    <Compile Include="GedcomNote.cs" />
     <Compile Include="GedcomSource.cs" />
     <Compile Include="GedcomAddress.cs" />
     <Compile Include="GedcomChange.cs" />

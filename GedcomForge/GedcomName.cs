@@ -20,6 +20,9 @@ namespace GedcomForge
 
     public override string ToString()
     {
+      if (!string.IsNullOrEmpty(this.Name))
+        return this.Name.Replace("/", string.Empty);
+
       return string.Format("{0} {1}", this.Givenname, this.Surname);
     }
   }
