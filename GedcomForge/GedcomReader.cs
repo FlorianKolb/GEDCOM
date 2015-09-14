@@ -243,7 +243,10 @@ namespace GedcomForge
               GedcomEntryLevel level = (GedcomEntryLevel)Enum.Parse(typeof(GedcomEntryLevel), number);
               elementName = capture.ToLower().Remove(0, 1).Insert(0, capture[0].ToString().ToUpper()).Replace("@", string.Empty);
 
-              XElement element = new XElement(elementName, new XAttribute("Content", value.StartsWith("@") ? value.Replace("@", string.Empty) : value.Replace("$$", string.Empty)));
+              XElement element = new XElement(elementName,
+                new XAttribute("Content", value.StartsWith("@") ?
+                value.Replace("@", string.Empty).Trim() : 
+                value.Replace("$$", string.Empty).Trim()));
 
               if (previousElement != null && previousLevel > GedcomEntryLevel.Zero &&
                 ((level > previousLevel && previousLevel > GedcomEntryLevel.Zero)) ||

@@ -15,6 +15,7 @@ namespace Gedcom.NET
   public partial class MainWindow : Form
   {
     GedcomFile file;
+    string filename;
     private bool progressCanceled = false;
 
     public MainWindow()
@@ -80,6 +81,8 @@ namespace Gedcom.NET
 
     private void LoadFile(string filename)
     {
+      this.filename = filename;
+
       this.Enabled = false;
 
       Progress progress = new Progress();
@@ -203,8 +206,13 @@ namespace Gedcom.NET
 
         detailView.Items.Add(new ListViewItem(new string[] { "Name", individual.Name.ToString() }));
         detailView.Items.Add(new ListViewItem(new string[] { "Geschlecht", individual.Sex.ToString().ToLower() == "f" ? "W" : "M" }));
-        detailView.Items.Add(new ListViewItem(new string[] { "E-Mail", individual.Email?.ToString() }));
-        detailView.Items.Add(new ListViewItem(new string[] { "Geburt", individual.Birth != null && individual.Birth.Date != null ? DateTime.Parse(individual.Birth.Date.Content).ToShortDateString() : string.Empty }));
+
+        if (!string.IsNullOrEmpty(individual.Email?.Content))
+          detailView.Items.Add(new ListViewItem(new string[] { "E-Mail", individual.Email?.ToString() }));
+
+        DateTime birthDate = new DateTime();
+        if (DateTime.TryParse(individual.Birth?.Date?.Content, out birthDate))
+          detailView.Items.Add(new ListViewItem(new string[] { "Geburt", birthDate.ToShortDateString() }));
 
         if (individual.Death != null && individual.Death.Date != null)
           detailView.Items.Add(new ListViewItem(new string[] { "Tod", DateTime.Parse(individual.Death.Date.Content).ToShortDateString() }));
@@ -215,7 +223,7 @@ namespace Gedcom.NET
         {
           GedcomObject gedcomObject = individual.Objects.Where(p => p.Form.Content.StartsWith("image/")).FirstOrDefault();
 
-          if (!string.IsNullOrEmpty(gedcomObject.File?.Content))
+          if (gedcomObject != null && !string.IsNullOrEmpty(gedcomObject.File?.Content))
           {
             pictureBox1.ImageLocation = gedcomObject.File?.Content;
             pictureBox1.Tag = new Tuple<string, string>(gedcomObject.Form.Content, gedcomObject.File?.Content);
@@ -251,7 +259,10 @@ namespace Gedcom.NET
           foreach (TreeNode node in familyTreeView.Nodes)
           {
             if (RecursiveSearch(node, individual))
+            {
               found = true;
+              break;
+            }
           }
         }
 
@@ -278,11 +289,10 @@ namespace Gedcom.NET
         }
       }
 
-      if (node.Nodes.Count > 0)
-        foreach (TreeNode child in node.Nodes)
-          return RecursiveSearch(child, individual);
-
-      return false;
+      if (node.NextVisibleNode != null)
+        return RecursiveSearch(node.NextVisibleNode, individual);
+      else
+        return false;
     }
 
     private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -314,13 +324,37 @@ namespace Gedcom.NET
 
         SaveFileDialog sfd = new SaveFileDialog();
         sfd.Filter = string.Format("*.{0}|*.{0}", filetype);
-        
+
+        GedcomIndividual individual = (GedcomIndividual)familyTreeView.SelectedNode.Tag;
+        sfd.FileName = individual.Name.ToString();
+
         if (sfd.ShowDialog() == DialogResult.OK)
         {
           File.Copy(tmpFile, sfd.FileName, true);
         }
 
         File.Delete(tmpFile);
+      }
+    }
+
+    private void zuXMLToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (this.file != null)
+      {
+        SaveFileDialog sfd = new SaveFileDialog();
+        sfd.Filter = "XML-Datei (*.xml)|*.xml";
+
+        if (sfd.ShowDialog() == DialogResult.OK)
+        {
+          Progress progress = new Progress();
+          progress.Show();
+          progress.ReportProgress(40);
+          GedcomReader.ToXml(this.filename).Save(sfd.FileName);
+
+          progress.ReportProgress(100);
+
+          progress.Close();
+        }
       }
     }
   }

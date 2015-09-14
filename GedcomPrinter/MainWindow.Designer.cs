@@ -34,29 +34,30 @@
       this.treeViewImageList = new System.Windows.Forms.ImageList(this.components);
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+      this.recentFiles = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+      this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.gedcomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
       this.splitContainer2 = new System.Windows.Forms.SplitContainer();
       this.detailView = new System.Windows.Forms.ListView();
+      this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.pictureBoxContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.bildSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
-      this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.recentFiles = new System.Windows.Forms.ToolStripMenuItem();
-      this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-      this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
       this.searchButton = new System.Windows.Forms.ToolStripButton();
-      this.pictureBoxContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.bildSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.zuXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -66,14 +67,14 @@
       this.splitContainer2.Panel1.SuspendLayout();
       this.splitContainer2.Panel2.SuspendLayout();
       this.splitContainer2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      this.pictureBoxContextMenu.SuspendLayout();
       this.statusStrip1.SuspendLayout();
       this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
       this.toolStripContainer1.ContentPanel.SuspendLayout();
       this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
       this.toolStripContainer1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.toolStrip1.SuspendLayout();
-      this.pictureBoxContextMenu.SuspendLayout();
       this.SuspendLayout();
       // 
       // familyTreeView
@@ -122,20 +123,45 @@
       this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
       this.dateiToolStripMenuItem.Text = "Datei";
       // 
+      // öffnenToolStripMenuItem
+      // 
+      this.öffnenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("öffnenToolStripMenuItem.Image")));
+      this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
+      this.öffnenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+      this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+      this.öffnenToolStripMenuItem.Text = "Öffnen...";
+      this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
+      // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
       this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
+      // 
+      // recentFiles
+      // 
+      this.recentFiles.Image = ((System.Drawing.Image)(resources.GetObject("recentFiles.Image")));
+      this.recentFiles.Name = "recentFiles";
+      this.recentFiles.Size = new System.Drawing.Size(207, 22);
+      this.recentFiles.Text = "Zuletzt geöffnete Dateien";
       // 
       // toolStripSeparator1
       // 
       this.toolStripSeparator1.Name = "toolStripSeparator1";
       this.toolStripSeparator1.Size = new System.Drawing.Size(204, 6);
       // 
+      // beendenToolStripMenuItem
+      // 
+      this.beendenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("beendenToolStripMenuItem.Image")));
+      this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
+      this.beendenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+      this.beendenToolStripMenuItem.Text = "Beenden";
+      this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+      // 
       // gedcomToolStripMenuItem
       // 
       this.gedcomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infToolStripMenuItem});
+            this.infToolStripMenuItem,
+            this.zuXMLToolStripMenuItem});
       this.gedcomToolStripMenuItem.Name = "gedcomToolStripMenuItem";
       this.gedcomToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
       this.gedcomToolStripMenuItem.Text = "Gedcom";
@@ -154,6 +180,14 @@
       this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
       this.infoToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
       this.infoToolStripMenuItem.Text = "Hilfe";
+      // 
+      // infoToolStripMenuItem1
+      // 
+      this.infoToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem1.Image")));
+      this.infoToolStripMenuItem1.Name = "infoToolStripMenuItem1";
+      this.infoToolStripMenuItem1.Size = new System.Drawing.Size(95, 22);
+      this.infoToolStripMenuItem1.Text = "Info";
+      this.infoToolStripMenuItem1.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
       // 
       // splitContainer1
       // 
@@ -204,6 +238,40 @@
       this.detailView.UseCompatibleStateImageBehavior = false;
       this.detailView.View = System.Windows.Forms.View.Details;
       // 
+      // columnHeader5
+      // 
+      this.columnHeader5.Text = "";
+      // 
+      // columnHeader6
+      // 
+      this.columnHeader6.Text = "";
+      // 
+      // pictureBox1
+      // 
+      this.pictureBox1.ContextMenuStrip = this.pictureBoxContextMenu;
+      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(321, 228);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pictureBox1.TabIndex = 0;
+      this.pictureBox1.TabStop = false;
+      // 
+      // pictureBoxContextMenu
+      // 
+      this.pictureBoxContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bildSpeichernToolStripMenuItem});
+      this.pictureBoxContextMenu.Name = "pictureBoxContextMenu";
+      this.pictureBoxContextMenu.Size = new System.Drawing.Size(158, 26);
+      // 
+      // bildSpeichernToolStripMenuItem
+      // 
+      this.bildSpeichernToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bildSpeichernToolStripMenuItem.Image")));
+      this.bildSpeichernToolStripMenuItem.Name = "bildSpeichernToolStripMenuItem";
+      this.bildSpeichernToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+      this.bildSpeichernToolStripMenuItem.Text = "Bild speichern...";
+      this.bildSpeichernToolStripMenuItem.Click += new System.EventHandler(this.bildSpeichernToolStripMenuItem_Click);
+      // 
       // statusStrip1
       // 
       this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -242,57 +310,6 @@
       // 
       this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
       // 
-      // pictureBox1
-      // 
-      this.pictureBox1.ContextMenuStrip = this.pictureBoxContextMenu;
-      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(321, 228);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-      this.pictureBox1.TabIndex = 0;
-      this.pictureBox1.TabStop = false;
-      // 
-      // öffnenToolStripMenuItem
-      // 
-      this.öffnenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("öffnenToolStripMenuItem.Image")));
-      this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-      this.öffnenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-      this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-      this.öffnenToolStripMenuItem.Text = "Öffnen...";
-      this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
-      // 
-      // recentFiles
-      // 
-      this.recentFiles.Image = ((System.Drawing.Image)(resources.GetObject("recentFiles.Image")));
-      this.recentFiles.Name = "recentFiles";
-      this.recentFiles.Size = new System.Drawing.Size(207, 22);
-      this.recentFiles.Text = "Zuletzt geöffnete Dateien";
-      // 
-      // beendenToolStripMenuItem
-      // 
-      this.beendenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("beendenToolStripMenuItem.Image")));
-      this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-      this.beendenToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-      this.beendenToolStripMenuItem.Text = "Beenden";
-      this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
-      // 
-      // infoToolStripMenuItem1
-      // 
-      this.infoToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem1.Image")));
-      this.infoToolStripMenuItem1.Name = "infoToolStripMenuItem1";
-      this.infoToolStripMenuItem1.Size = new System.Drawing.Size(95, 22);
-      this.infoToolStripMenuItem1.Text = "Info";
-      this.infoToolStripMenuItem1.Click += new System.EventHandler(this.infoToolStripMenuItem1_Click);
-      // 
-      // columnHeader5
-      // 
-      this.columnHeader5.Text = "";
-      // 
-      // columnHeader6
-      // 
-      this.columnHeader6.Text = "";
-      // 
       // toolStrip1
       // 
       this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -320,20 +337,12 @@
       this.searchButton.Text = "Suchen";
       this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
       // 
-      // pictureBoxContextMenu
+      // zuXMLToolStripMenuItem
       // 
-      this.pictureBoxContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bildSpeichernToolStripMenuItem});
-      this.pictureBoxContextMenu.Name = "pictureBoxContextMenu";
-      this.pictureBoxContextMenu.Size = new System.Drawing.Size(158, 48);
-      // 
-      // bildSpeichernToolStripMenuItem
-      // 
-      this.bildSpeichernToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bildSpeichernToolStripMenuItem.Image")));
-      this.bildSpeichernToolStripMenuItem.Name = "bildSpeichernToolStripMenuItem";
-      this.bildSpeichernToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-      this.bildSpeichernToolStripMenuItem.Text = "Bild speichern...";
-      this.bildSpeichernToolStripMenuItem.Click += new System.EventHandler(this.bildSpeichernToolStripMenuItem_Click);
+      this.zuXMLToolStripMenuItem.Name = "zuXMLToolStripMenuItem";
+      this.zuXMLToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.zuXMLToolStripMenuItem.Text = "Zu XML";
+      this.zuXMLToolStripMenuItem.Click += new System.EventHandler(this.zuXMLToolStripMenuItem_Click);
       // 
       // MainWindow
       // 
@@ -358,6 +367,8 @@
       this.splitContainer2.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
       this.splitContainer2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      this.pictureBoxContextMenu.ResumeLayout(false);
       this.statusStrip1.ResumeLayout(false);
       this.statusStrip1.PerformLayout();
       this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
@@ -367,10 +378,8 @@
       this.toolStripContainer1.TopToolStripPanel.PerformLayout();
       this.toolStripContainer1.ResumeLayout(false);
       this.toolStripContainer1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
-      this.pictureBoxContextMenu.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -404,6 +413,7 @@
     private System.Windows.Forms.ToolStripButton searchButton;
     private System.Windows.Forms.ContextMenuStrip pictureBoxContextMenu;
     private System.Windows.Forms.ToolStripMenuItem bildSpeichernToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem zuXMLToolStripMenuItem;
   }
 }
 
