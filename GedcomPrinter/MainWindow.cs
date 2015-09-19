@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -33,7 +30,6 @@ namespace Gedcom.NET
       {
         ToolStripMenuItem item = new ToolStripMenuItem();
         item.Text = string.Format("{0} {1}", file.Key, file.Value);
-        item.Image = Properties.Resources.bullet_orange;
         item.Click +=
           (sender, e) =>
           {
@@ -60,7 +56,7 @@ namespace Gedcom.NET
 
         ToolStripMenuItem clearRecentFiles = new ToolStripMenuItem();
         clearRecentFiles.Text = "Liste leeren";
-        clearRecentFiles.Image = Properties.Resources.delete;
+        clearRecentFiles.Image = Properties.Resources.cross;
         clearRecentFiles.Click +=
          (sender, e) =>
          {
@@ -92,10 +88,8 @@ namespace Gedcom.NET
       familyTreeView.Nodes.Clear();
 
       progress.ReportProgress(2);
-      Application.DoEvents();
       this.file = GedcomReader.ToGedcomFile(filename);
       progress.ReportProgress(5);
-      Application.DoEvents();
 
       double increaseValue = (double)95 / file.Families.Count;
       double currentValue = 5;
@@ -181,7 +175,7 @@ namespace Gedcom.NET
     private void OpenFile()
     {
       OpenFileDialog ofd = new OpenFileDialog();
-      ofd.Filter = "Gedcom Datei (*.ged)|*.ged";
+      ofd.Filter = "Gedcom 5.5.1 Datei (*.ged)|*.ged";
 
       if (ofd.ShowDialog() == DialogResult.OK)
       {
@@ -214,9 +208,11 @@ namespace Gedcom.NET
         if (DateTime.TryParse(individual.Birth?.Date?.Content, out birthDate))
           detailView.Items.Add(new ListViewItem(new string[] { "Geburt", birthDate.ToShortDateString() }));
 
-        if (individual.Death != null && individual.Death.Date != null)
-          detailView.Items.Add(new ListViewItem(new string[] { "Tod", DateTime.Parse(individual.Death.Date.Content).ToShortDateString() }));
+        DateTime deathDate = new DateTime();
+        if (DateTime.TryParse(individual.Death?.Date?.Content, out deathDate))
+          detailView.Items.Add(new ListViewItem(new string[] { "Tod", deathDate.ToShortDateString() }));
 
+        detailView.AlternateHighlightRows();
         detailView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
         if (individual.Objects.Count > 0)
@@ -235,14 +231,7 @@ namespace Gedcom.NET
         }
       }
     }
-
-    private void infToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      GedcomFileInformation info = new GedcomFileInformation();
-      info.LoadFile(this.file);
-      info.ShowDialog();
-    }
-
+    
     private void searchButton_Click(object sender, EventArgs e)
     {
       this.Search();
@@ -318,10 +307,6 @@ namespace Gedcom.NET
 
       if (data.Item2.StartsWith("http"))
       {
-        WebClient client = new WebClient();
-        string tmpFile = string.Concat(Path.GetTempFileName(), filetype);
-        client.DownloadFile(data.Item2, tmpFile);
-
         SaveFileDialog sfd = new SaveFileDialog();
         sfd.Filter = string.Format("*.{0}|*.{0}", filetype);
 
@@ -330,10 +315,22 @@ namespace Gedcom.NET
 
         if (sfd.ShowDialog() == DialogResult.OK)
         {
-          File.Copy(tmpFile, sfd.FileName, true);
-        }
+          Progress progress = new Progress();
+          progress.Show();
 
-        File.Delete(tmpFile);
+          WebClient client = new WebClient();
+          string tmpFile = string.Concat(Path.GetTempFileName(), filetype);
+          client.DownloadProgressChanged += (x, args) => {
+            progress.ReportProgress(args.ProgressPercentage);
+
+            progress.ReportProgress(string.Format("{0} of {1}", args.BytesReceived.FormatBytes(), args.TotalBytesToReceive.FormatBytes()));
+          };
+
+          client.DownloadFileCompleted += (y, args) => {
+            progress.Close();
+          };
+          client.DownloadFileAsync(new Uri(data.Item2), sfd.FileName);
+        }
       }
     }
 
@@ -356,6 +353,48 @@ namespace Gedcom.NET
           progress.Close();
         }
       }
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    {
+      if (keyData == (Keys.Control | Keys.F))
+      {
+        searchTextBox.Focus();
+      }
+
+      return base.ProcessCmdKey(ref msg, keyData);
+    }
+
+    private void dateiinformationToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      GedcomFileInformation info = new GedcomFileInformation();
+      info.LoadFile(this.file);
+      info.ShowDialog();
+    }
+
+    private void xMLSpeichernToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (this.file != null)
+      {
+        SaveFileDialog sfd = new SaveFileDialog();
+        sfd.Filter = "XML-Datei (*.xml)|*.xml";
+
+        if (sfd.ShowDialog() == DialogResult.OK)
+        {
+          Progress progress = new Progress();
+          progress.Show();
+          progress.ReportProgress(40);
+          GedcomReader.ToXml(this.filename).Save(sfd.FileName);
+
+          progress.ReportProgress(100);
+
+          progress.Close();
+        }
+      }
+    }
+
+    private void alsPDFExportierenToolStripMenuItem_Click(object sender, EventArgs e)
+    {
     }
   }
 }

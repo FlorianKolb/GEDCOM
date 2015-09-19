@@ -40,16 +40,15 @@ namespace Gedcom.NET
 
     public void ReportProgress(int progress)
     {
-      if (progress <= 100)
-      {
-        this.progressBar1.Value = progress;
-        this.valueLabel.Text = string.Concat(progress, "%");
-      }
+      this.progressBar1.Value = progress;
+      this.valueLabel.Text = string.Concat(progress, "%");
+      Application.DoEvents();
     }
 
     public void ReportProgress(string progress)
     {
       this.progressLabel.Text = progress;
+      Application.DoEvents();
     }
 
     private void Progress_Load(object sender, EventArgs e)

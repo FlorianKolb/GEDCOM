@@ -36,11 +36,15 @@
       this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+      this.gEDCOMToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+      this.dateiinformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.xMLSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.recentFiles = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.gedcomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.infToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.extrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.optionenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.infoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
       this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -57,7 +61,8 @@
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
       this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
       this.searchButton = new System.Windows.Forms.ToolStripButton();
-      this.zuXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+      this.alsPDFExportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
       this.splitContainer1.Panel1.SuspendLayout();
@@ -103,7 +108,7 @@
       // 
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dateiToolStripMenuItem,
-            this.gedcomToolStripMenuItem,
+            this.extrasToolStripMenuItem,
             this.infoToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
@@ -116,6 +121,8 @@
       this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.öffnenToolStripMenuItem,
             this.toolStripMenuItem1,
+            this.gEDCOMToolStripMenuItem1,
+            this.toolStripSeparator2,
             this.recentFiles,
             this.toolStripSeparator1,
             this.beendenToolStripMenuItem});
@@ -137,6 +144,39 @@
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
       this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
       // 
+      // gEDCOMToolStripMenuItem1
+      // 
+      this.gEDCOMToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiinformationToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.xMLSpeichernToolStripMenuItem,
+            this.alsPDFExportierenToolStripMenuItem});
+      this.gEDCOMToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("gEDCOMToolStripMenuItem1.Image")));
+      this.gEDCOMToolStripMenuItem1.Name = "gEDCOMToolStripMenuItem1";
+      this.gEDCOMToolStripMenuItem1.Size = new System.Drawing.Size(207, 22);
+      this.gEDCOMToolStripMenuItem1.Text = "GEDCOM";
+      // 
+      // dateiinformationToolStripMenuItem
+      // 
+      this.dateiinformationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dateiinformationToolStripMenuItem.Image")));
+      this.dateiinformationToolStripMenuItem.Name = "dateiinformationToolStripMenuItem";
+      this.dateiinformationToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.dateiinformationToolStripMenuItem.Text = "Dateiinformation";
+      this.dateiinformationToolStripMenuItem.Click += new System.EventHandler(this.dateiinformationToolStripMenuItem_Click);
+      // 
+      // xMLSpeichernToolStripMenuItem
+      // 
+      this.xMLSpeichernToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xMLSpeichernToolStripMenuItem.Image")));
+      this.xMLSpeichernToolStripMenuItem.Name = "xMLSpeichernToolStripMenuItem";
+      this.xMLSpeichernToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+      this.xMLSpeichernToolStripMenuItem.Text = "Als XML speichern...";
+      this.xMLSpeichernToolStripMenuItem.Click += new System.EventHandler(this.xMLSpeichernToolStripMenuItem_Click);
+      // 
+      // toolStripSeparator2
+      // 
+      this.toolStripSeparator2.Name = "toolStripSeparator2";
+      this.toolStripSeparator2.Size = new System.Drawing.Size(204, 6);
+      // 
       // recentFiles
       // 
       this.recentFiles.Image = ((System.Drawing.Image)(resources.GetObject("recentFiles.Image")));
@@ -157,21 +197,20 @@
       this.beendenToolStripMenuItem.Text = "Beenden";
       this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
       // 
-      // gedcomToolStripMenuItem
+      // extrasToolStripMenuItem
       // 
-      this.gedcomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infToolStripMenuItem,
-            this.zuXMLToolStripMenuItem});
-      this.gedcomToolStripMenuItem.Name = "gedcomToolStripMenuItem";
-      this.gedcomToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-      this.gedcomToolStripMenuItem.Text = "Gedcom";
+      this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionenToolStripMenuItem});
+      this.extrasToolStripMenuItem.Name = "extrasToolStripMenuItem";
+      this.extrasToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+      this.extrasToolStripMenuItem.Text = "Extras";
       // 
-      // infToolStripMenuItem
+      // optionenToolStripMenuItem
       // 
-      this.infToolStripMenuItem.Name = "infToolStripMenuItem";
-      this.infToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-      this.infToolStripMenuItem.Text = "Dateiinformation";
-      this.infToolStripMenuItem.Click += new System.EventHandler(this.infToolStripMenuItem_Click);
+      this.optionenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("optionenToolStripMenuItem.Image")));
+      this.optionenToolStripMenuItem.Name = "optionenToolStripMenuItem";
+      this.optionenToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+      this.optionenToolStripMenuItem.Text = "Optionen...";
       // 
       // infoToolStripMenuItem
       // 
@@ -319,13 +358,13 @@
             this.searchButton});
       this.toolStrip1.Location = new System.Drawing.Point(3, 0);
       this.toolStrip1.Name = "toolStrip1";
-      this.toolStrip1.Size = new System.Drawing.Size(171, 25);
+      this.toolStrip1.Size = new System.Drawing.Size(221, 25);
       this.toolStrip1.TabIndex = 0;
       // 
       // searchTextBox
       // 
       this.searchTextBox.Name = "searchTextBox";
-      this.searchTextBox.Size = new System.Drawing.Size(100, 25);
+      this.searchTextBox.Size = new System.Drawing.Size(150, 25);
       this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
       // 
       // searchButton
@@ -337,12 +376,18 @@
       this.searchButton.Text = "Suchen";
       this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
       // 
-      // zuXMLToolStripMenuItem
+      // toolStripMenuItem2
       // 
-      this.zuXMLToolStripMenuItem.Name = "zuXMLToolStripMenuItem";
-      this.zuXMLToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-      this.zuXMLToolStripMenuItem.Text = "Zu XML";
-      this.zuXMLToolStripMenuItem.Click += new System.EventHandler(this.zuXMLToolStripMenuItem_Click);
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 6);
+      // 
+      // alsPDFExportierenToolStripMenuItem
+      // 
+      this.alsPDFExportierenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("alsPDFExportierenToolStripMenuItem.Image")));
+      this.alsPDFExportierenToolStripMenuItem.Name = "alsPDFExportierenToolStripMenuItem";
+      this.alsPDFExportierenToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+      this.alsPDFExportierenToolStripMenuItem.Text = "Als PDF exportieren...";
+      this.alsPDFExportierenToolStripMenuItem.Click += new System.EventHandler(this.alsPDFExportierenToolStripMenuItem_Click);
       // 
       // MainWindow
       // 
@@ -401,11 +446,9 @@
     private System.Windows.Forms.ListView detailView;
     private System.Windows.Forms.ToolStripMenuItem recentFiles;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-    private System.Windows.Forms.ToolStripMenuItem gedcomToolStripMenuItem;
     private System.Windows.Forms.StatusStrip statusStrip1;
     private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-    private System.Windows.Forms.ToolStripMenuItem infToolStripMenuItem;
     private System.Windows.Forms.ColumnHeader columnHeader5;
     private System.Windows.Forms.ColumnHeader columnHeader6;
     private System.Windows.Forms.ToolStrip toolStrip1;
@@ -413,7 +456,14 @@
     private System.Windows.Forms.ToolStripButton searchButton;
     private System.Windows.Forms.ContextMenuStrip pictureBoxContextMenu;
     private System.Windows.Forms.ToolStripMenuItem bildSpeichernToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem zuXMLToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem extrasToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem optionenToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem gEDCOMToolStripMenuItem1;
+    private System.Windows.Forms.ToolStripMenuItem dateiinformationToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem xMLSpeichernToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+    private System.Windows.Forms.ToolStripMenuItem alsPDFExportierenToolStripMenuItem;
   }
 }
 

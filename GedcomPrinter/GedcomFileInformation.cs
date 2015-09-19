@@ -1,12 +1,7 @@
 ﻿using GedcomForge;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Gedcom.NET
@@ -25,7 +20,7 @@ namespace Gedcom.NET
 
     public void LoadFile(GedcomFile file)
     {
-      if (file.Head.Note != null)
+      if (file != null && file.Head?.Note != null)
       {
         string[] lines = new string[]
         {
@@ -47,6 +42,7 @@ namespace Gedcom.NET
       propertyListView.Items.Add(new ListViewItem(new string[] { "Language", file.Head.Language?.Content }));
       propertyListView.Items.Add(new ListViewItem(new string[] { "Email", file.Head.Email?.Content }));
 
+      propertyListView.AlternateHighlightRows();
       propertyListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
     }
 
